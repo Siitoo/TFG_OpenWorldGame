@@ -4,7 +4,8 @@ using System.Collections;
 // AimBehaviour inherits from GenericBehaviour. This class corresponds to aim and strafe behaviour.
 public class AimBehaviourBasic : GenericBehaviour
 {
-	public string aimButton = "Aim", shoulderButton = "Aim Shoulder";     // Default aim and switch shoulders buttons.
+	public string aimButton = "Aim", shoulderButton = "Aim Shoulder"; // Default aim and switch shoulders buttons.
+    public float speed = 1.2f;
 	public Texture2D crosshair;                                           // Crosshair texture.
 	public float aimTurnSmoothing = 0.15f;                                // Speed of turn response when aiming to match camera facing.
 	public Vector3 aimPivotOffset = new Vector3(0.5f, 1.2f,  0f);         // Offset to repoint the camera when aiming.
@@ -63,7 +64,7 @@ public class AimBehaviourBasic : GenericBehaviour
 			aimCamOffset.x = Mathf.Abs(aimCamOffset.x) * signal;
 			aimPivotOffset.x = Mathf.Abs(aimPivotOffset.x) * signal;
 			yield return new WaitForSeconds(0.1f);
-			behaviourManager.GetAnim.SetFloat(speedFloat, 0);
+			//behaviourManager.GetAnim.SetFloat(speedFloat, 0);
 			// This state overrides the active one.
 			behaviourManager.OverrideWithBehaviour(this);
 		}
@@ -118,7 +119,10 @@ public class AimBehaviourBasic : GenericBehaviour
 		behaviourManager.SetLastDirection(forward);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, minSpeed * Time.deltaTime);
 
-	}
+        if(behaviourManager.GetAnim.GetFloat("Speed") > 0.1)
+            behaviourManager.GetRigidBody.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
+
+    }
 
  	// Draw the crosshair when aiming.
 	void OnGUI () 
