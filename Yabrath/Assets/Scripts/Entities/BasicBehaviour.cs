@@ -9,7 +9,7 @@ public class BasicBehaviour : MonoBehaviour
 	public Transform playerCamera;                        // Reference to the camera that focus the player.
 	public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
 	public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
-	public string sprintButton = "Sprint";                // Default sprint button input name.
+	//public string sprintButton = "Sprint";                // Default sprint button input name.
 
 	private float h;                                      // Horizontal Axis.
 	private float v;                                      // Vertical Axis.
@@ -27,7 +27,10 @@ public class BasicBehaviour : MonoBehaviour
 	private List<GenericBehaviour> overridingBehaviours;  // List of current overriding behaviours.
 	private Rigidbody rBody;                              // Reference to the player's rigidbody.
 	private int groundedBool;                             // Animator variable related to whether or not the player is on the ground.
-	private Vector3 colExtents;                           // Collider extents for ground test. 
+	private Vector3 colExtents;                             // Collider extents for ground test. 
+
+    [HideInInspector]
+    public InputController inputController = null;
 
 	// Get current horizontal and vertical axes.
 	public float GetH { get { return h; } }
@@ -60,20 +63,21 @@ public class BasicBehaviour : MonoBehaviour
 		// Grounded verification variables.
 		groundedBool = Animator.StringToHash("Grounded");
 		colExtents = GetComponent<Collider>().bounds.extents;
+
+        inputController = GameObject.FindGameObjectWithTag("Manager").GetComponent<InputController>();
 	}
 
 	void Update()
 	{
 		// Store the input axes.
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
-
+		h = inputController.AxisX;
+		v = inputController.AxisY;
 		// Set the input axes on the Animator Controller.
 		anim.SetFloat(hFloat, h, 0.1f, Time.deltaTime);
 		anim.SetFloat(vFloat, v, 0.1f, Time.deltaTime);
 
-		// Toggle sprint by input.
-		sprint = Input.GetButton (sprintButton);
+        // Toggle sprint by input.
+        sprint = inputController.SprintButton;
 
 		// Set the correct camera FOV for sprint mode.
 		if(IsSprinting())

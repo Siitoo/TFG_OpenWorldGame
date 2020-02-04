@@ -4,7 +4,7 @@ using System.Collections;
 // AimBehaviour inherits from GenericBehaviour. This class corresponds to aim and strafe behaviour.
 public class AimBehaviourBasic : GenericBehaviour
 {
-	public string aimButton = "Aim", shoulderButton = "Aim Shoulder"; // Default aim and switch shoulders buttons.
+	//public string aimButton = "Aim", shoulderButton = "Aim Shoulder"; // Default aim and switch shoulders buttons.
     public float speed = 1.2f;
 	public Texture2D crosshair;                                           // Crosshair texture.
 	public float aimTurnSmoothing = 0.15f;                                // Speed of turn response when aiming to match camera facing.
@@ -25,11 +25,11 @@ public class AimBehaviourBasic : GenericBehaviour
 	void Update ()
 	{
 		// Activate/deactivate aim by input.
-		if (Input.GetAxisRaw(aimButton) != 0 && !aim)
+		if ( behaviourManager.inputController.AimButton && !aim)
 		{
 			StartCoroutine(ToggleAimOn());
 		}
-		else if (aim && Input.GetAxisRaw(aimButton) == 0)
+		else if (aim && !behaviourManager.inputController.AimButton)
 		{
 			StartCoroutine(ToggleAimOff());
 		}
@@ -38,11 +38,12 @@ public class AimBehaviourBasic : GenericBehaviour
 		canSprint = !aim;
 
 		// Toggle camera aim position left or right, switching shoulders.
-		if (aim && Input.GetButtonDown (shoulderButton))
+        //Sito: this is for change de point of view in aim, don't need
+		/*if (aim && Input.GetButtonDown (shoulderButton))
 		{
 			aimCamOffset.x = aimCamOffset.x * (-1);
 			aimPivotOffset.x = aimPivotOffset.x * (-1);
-		}
+		}*/
 
 		// Set aim boolean on the Animator Controller.
 		behaviourManager.GetAnim.SetBool (aimBool, aim);
