@@ -17,6 +17,8 @@ public class MoveBehaviour : GenericBehaviour
 	private bool jump;                              // Boolean to determine whether or not the player started a jump.
 	private bool isColliding;                       // Boolean to determine if the player has collided with an obstacle.
 
+    private bool start_jumping = false;
+
 	// Start is always called after any Awake functions.
 	void Start()
 	{
@@ -37,7 +39,8 @@ public class MoveBehaviour : GenericBehaviour
 		// Get jump input.
 		if (!jump && behaviourManager.inputController.JumpButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
 		{
-			jump = true;
+            if(behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+			    jump = true;
 		}
 	}
 
@@ -54,8 +57,51 @@ public class MoveBehaviour : GenericBehaviour
 	// Execute the idle and walk/run jump movements.
 	void JumpManagement()
 	{
+        if (jump)
+        {
+            if (behaviourManager.IsGrounded() && !start_jumping)
+            {
+                behaviourManager.LockTempBehaviour(this.behaviourCode);
+                behaviourManager.GetAnim.SetBool(jumpBool, true);
+                GetComponent<CapsuleCollider>().material.dynamicFriction = 0f;
+                GetComponent<CapsuleCollider>().material.staticFriction = 0f;
+                RemoveVerticalVelocity();
+
+                start_jumping = true;
+            }
+
+            if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+            {
+                if (start_jumping && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.6f)
+                {
+                    // Set jump vertical impulse velocity.
+                    float velocity = 2f * Mathf.Abs(Physics.gravity.y) * jumpHeight;
+                    velocity = Mathf.Sqrt(velocity);
+                    behaviourManager.GetRigidBody.AddForce(Vector3.up * velocity, ForceMode.VelocityChange);
+                   // behaviourManager.GetRigidBody.AddForce(Vector3.forward * walkSpeed, ForceMode.VelocityChange);
+                }
+
+
+                if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.6f)
+                {
+                    behaviourManager.GetRigidBody.AddForce(Vector3.down * Mathf.Abs(Physics.gravity.y / 4), ForceMode.VelocityChange);
+                  
+
+                    if (behaviourManager.IsGrounded())
+                    {
+                        start_jumping = false;
+                        jump = false;
+                        behaviourManager.GetAnim.SetBool(jumpBool, false);
+                    }
+                }
+
+                behaviourManager.GetRigidBody.AddForce(transform.forward * jumpIntertialForce/2  * Physics.gravity.magnitude/3  * behaviourManager.GetAnim.GetFloat("Speed")*2, ForceMode.Acceleration);
+            }
+
+
+        }
 		// Start a new jump.
-		if (jump && !behaviourManager.GetAnim.GetBool(jumpBool) && behaviourManager.IsGrounded())
+		/*if (jump && !behaviourManager.GetAnim.GetBool(jumpBool) && behaviourManager.IsGrounded())
 		{
 			// Set jump related parameters.
 			behaviourManager.LockTempBehaviour(this.behaviourCode);
@@ -71,16 +117,20 @@ public class MoveBehaviour : GenericBehaviour
 				// Set jump vertical impulse velocity.
 				float velocity = 2f * Mathf.Abs(Physics.gravity.y) * jumpHeight;
 				velocity = Mathf.Sqrt(velocity);
-				behaviourManager.GetRigidBody.AddForce(Vector3.up * velocity, ForceMode.VelocityChange);
-			}
-		}
+                behaviourManager.GetRigidBody.AddForce(Vector3.up * velocity *10.0f , ForceMode.VelocityChange);
+
+                //behaviourManager.GetRigidBody.AddRelativeForce(Vector3.up * velocity, ForceMode.VelocityChange);
+            }
+           // behaviourManager.GetRigidBody.velocity = Vector3.up * 40.0f;
+           
+        }
 		// Is already jumping?
 		else if (behaviourManager.GetAnim.GetBool(jumpBool))
 		{
 			// Keep forward movement while in the air.
 			if (!behaviourManager.IsGrounded() && !isColliding && behaviourManager.GetTempLockStatus())
 			{
-				behaviourManager.GetRigidBody.AddForce(transform.forward * jumpIntertialForce * Physics.gravity.magnitude * sprintSpeed, ForceMode.Acceleration);
+				behaviourManager.GetRigidBody.AddForce(transform.forward * jumpIntertialForce/4 * Physics.gravity.magnitude/10 * sprintSpeed, ForceMode.Acceleration);
 			}
 			// Has landed?
 			if ((behaviourManager.GetRigidBody.velocity.y < 0) && behaviourManager.IsGrounded())
@@ -94,7 +144,7 @@ public class MoveBehaviour : GenericBehaviour
 				behaviourManager.GetAnim.SetBool(jumpBool, false);
 				behaviourManager.UnlockTempBehaviour(this.behaviourCode);
 			}
-		}
+		}*/
 	}
 
 	// Deal with the basic player movement
