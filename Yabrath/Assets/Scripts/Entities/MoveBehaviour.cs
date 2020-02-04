@@ -153,6 +153,11 @@ public class MoveBehaviour : GenericBehaviour
 		// On ground, obey gravity.
 		if (behaviourManager.IsGrounded())
 			behaviourManager.GetRigidBody.useGravity = true;
+        else if(!jump)
+        {
+            behaviourManager.GetRigidBody.AddForce(Vector3.down * Mathf.Abs(Physics.gravity.y / 3), ForceMode.VelocityChange);
+        }
+
 
 		// Avoid takeoff when reached a slope end.
 		else if (!behaviourManager.GetAnim.GetBool(jumpBool) && behaviourManager.GetRigidBody.velocity.y > 0)
