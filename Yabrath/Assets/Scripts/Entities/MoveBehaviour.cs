@@ -16,21 +16,33 @@ public class MoveBehaviour : GenericBehaviour
 	private int groundedBool;                       // Animator variable related to whether or not the player is on ground.
 	private bool jump;                              // Boolean to determine whether or not the player started a jump.
 	private bool isColliding;                       // Boolean to determine if the player has collided with an obstacle.
-
+    private int strongAttackBool;
+    private int resetComboBool;
     private bool start_jumping = false;
 
+    private bool strongAttack = false;
+    private bool start_attack = false;
+    private string[] strongAttackParameters;
+    private int combo_index = 0;
 	// Start is always called after any Awake functions.
 	void Start()
 	{
 		// Set up the references.
 		jumpBool = Animator.StringToHash("Jump");
 		groundedBool = Animator.StringToHash("Grounded");
-		behaviourManager.GetAnim.SetBool(groundedBool, true);
+        strongAttackBool = Animator.StringToHash("StrongAttack");
+        resetComboBool = Animator.StringToHash("ResetCombo");
 
+		behaviourManager.GetAnim.SetBool(groundedBool, true);
+        
 		// Subscribe and register this behaviour as the default behaviour.
 		behaviourManager.SubscribeBehaviour(this);
 		behaviourManager.RegisterDefaultBehaviour(this.behaviourCode);
 		speedSeeker = runSpeed;
+
+        //Sito Test attacks
+        strongAttackParameters = new string[] { "Kick1", "Kick2", "Kick3", "StrongAttackReset" };
+
 	}
 
 	// Update is used to set features regardless the active behaviour.
@@ -42,17 +54,90 @@ public class MoveBehaviour : GenericBehaviour
             if(behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
 			    jump = true;
 		}
+
+        if(behaviourManager.inputController.StrongButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
+        {
+                strongAttack = true;
+        }
+
 	}
 
 	// LocalFixedUpdate overrides the virtual function of the base class.
 	public override void LocalFixedUpdate()
 	{
+
+        AttackManagement();
+
 		// Call the basic movement manager.
 		MovementManagement(behaviourManager.GetH, behaviourManager.GetV);
 
 		// Call the jump manager.
 		JumpManagement();
 	}
+
+    void AttackManagement()
+    {
+        if(strongAttack && behaviourManager.IsGrounded() && !start_attack)
+        {
+            behaviourManager.LockTempBehaviour(this.behaviourCode);
+            behaviourManager.GetAnim.SetTrigger(strongAttackParameters[combo_index]);
+            combo_index++;
+            start_attack = true;
+            strongAttack = false;
+        }
+        
+        if (start_attack && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).IsName("Kick1"))
+        {
+      
+            if(strongAttack && (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).normalizedTime <= 0.9f && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).normalizedTime >= 0.3f))
+            {
+                behaviourManager.GetAnim.SetTrigger(strongAttackParameters[combo_index]);
+                combo_index++;
+            }
+            else if ( behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).normalizedTime > 1f)
+            {
+                combo_index = strongAttackParameters.Length;
+            }
+
+            strongAttack = false;
+        }
+
+        if (start_attack && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).IsName("Kick2"))
+        {
+
+            if (strongAttack && (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).normalizedTime <= 0.9f || behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).normalizedTime >= 0.3f))
+            {
+                behaviourManager.GetAnim.SetTrigger(strongAttackParameters[combo_index]);
+                combo_index++;
+            }
+            else if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).normalizedTime > 1f)
+            {
+                combo_index = strongAttackParameters.Length; 
+            }
+
+            strongAttack = false;
+        }
+
+        if (start_attack && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).IsName("Kick3"))
+        {
+
+            if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).normalizedTime > 1f)
+            {
+                combo_index++;
+            }
+        }
+
+        if (start_attack && combo_index == strongAttackParameters.Length && !behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(2).IsName("NoneAttack"))
+        {
+            combo_index = strongAttackParameters.Length - 1;
+            behaviourManager.GetAnim.SetTrigger(strongAttackParameters[combo_index]);
+
+            start_attack = false;
+            combo_index = 0;
+            behaviourManager.UnlockTempBehaviour(this.behaviourCode);
+        }
+
+    }
 
 	// Execute the idle and walk/run jump movements.
 	void JumpManagement()
@@ -92,6 +177,7 @@ public class MoveBehaviour : GenericBehaviour
                         start_jumping = false;
                         jump = false;
                         behaviourManager.GetAnim.SetBool(jumpBool, false);
+                        behaviourManager.UnlockTempBehaviour(this.behaviourCode);
                     }
                 }
 

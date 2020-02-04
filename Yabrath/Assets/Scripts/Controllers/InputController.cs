@@ -87,10 +87,10 @@ public class InputController : MonoBehaviour
         if (Input.GetButton(sprintButton) == true || state.Buttons.LeftStick == ButtonState.Pressed) SprintButton = true; else SprintButton = false;
         if (Input.GetButton(aimButton) == true || state.Buttons.LeftShoulder == ButtonState.Pressed) AimButton = true; else AimButton = false;
         if (Input.GetButton(shootButton) == true || state.Buttons.RightShoulder == ButtonState.Pressed) ShootButton = true; else ShootButton= false;
-        if (Input.GetButton(weakAttackButton) == true || state.Buttons.X == ButtonState.Pressed) WeakAttackButton = true; else WeakAttackButton = false;
-        if (Input.GetButton(strongAttackButton) == true || state.Buttons.Y == ButtonState.Pressed) StrongButton = true; else StrongButton = false;
-        if (Input.GetButton(jumpButton) == true || state.Buttons.A == ButtonState.Pressed) JumpButton = true; else JumpButton = false;
-        if (Input.GetButton(tumbleButton) == true || state.Buttons.B == ButtonState.Pressed) TumbleButton = true; else TumbleButton = false;
+        if (Input.GetButton(weakAttackButton) == true || (state.Buttons.X == ButtonState.Pressed && previous_state.Buttons.X == ButtonState.Released)) WeakAttackButton = true; else WeakAttackButton = false;
+        if (Input.GetButton(strongAttackButton) == true || (state.Buttons.Y == ButtonState.Pressed && previous_state.Buttons.Y == ButtonState.Released)) StrongButton = true; else StrongButton = false;
+        if (Input.GetButton(jumpButton) == true || (state.Buttons.A == ButtonState.Pressed && previous_state.Buttons.A == ButtonState.Released)) JumpButton = true; else JumpButton = false;
+        if (Input.GetButton(tumbleButton) == true || (state.Buttons.B == ButtonState.Pressed && previous_state.Buttons.B == ButtonState.Released)) TumbleButton = true; else TumbleButton = false;
 
 
     }
