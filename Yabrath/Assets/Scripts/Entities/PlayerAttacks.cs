@@ -47,14 +47,19 @@ public class PlayerAttacks : MonoBehaviour
 
     public void AttackPunch2()
     {
-        GameObject[] enemies = EnemiesHitted(false);
+        GameObject[] enemies = EnemiesHitted(false,true);
 
         DoDmg(enemies, punch2_dmg);
     }
 
-    public void AttackPunch3()
+    public void AttackPunch3(int hit)
     {
-        GameObject[] enemies = EnemiesHitted(false);
+        bool left = false;
+
+        if (hit == 0)
+            left = true;
+
+        GameObject[] enemies = EnemiesHitted(false, left);
 
         DoDmg(enemies, punch3_dmg);
     }
@@ -78,13 +83,14 @@ public class PlayerAttacks : MonoBehaviour
         {
             if (left)
             {
-                colliders = Physics.OverlapBox(left_punch.position, Vector3.up / 1.78f, left_punch.rotation);
+                colliders = Physics.OverlapSphere(left_punch.position, 0.8f);
             }
             else
             {
-                colliders = Physics.OverlapBox(right_punch.position, Vector3.up / 1.78f, right_punch.rotation);
+                colliders = Physics.OverlapSphere(right_punch.position, 0.8f);
             }
         }
+
 
         GameObject[] hits = new GameObject[colliders.Length];
         int index = 0;
@@ -102,7 +108,8 @@ public class PlayerAttacks : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<EntityLife>().ReceiveDmg(dmg);
+            if(enemy != null)
+               enemy.GetComponent<EntityLife>().ReceiveDmg(dmg);
         }
     }
 

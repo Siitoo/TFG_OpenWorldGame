@@ -58,7 +58,71 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.13324709
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.21862873
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.33117723
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.42949548
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.56144893
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6429496
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.7270375
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8033635
+        functionName: AttackPunch3
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 760ab73bdc93bd34f9432206f74f9c32,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
