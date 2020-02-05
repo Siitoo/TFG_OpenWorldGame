@@ -76,8 +76,9 @@ public class MoveBehaviour : GenericBehaviour
 
         AttackManagement();
 
-		// Call the basic movement manager.
-		MovementManagement(behaviourManager.GetH, behaviourManager.GetV);
+        if(!start_attack_strong && !start_attack_weak)
+		    // Call the basic movement manager.
+		    MovementManagement(behaviourManager.GetH, behaviourManager.GetV);
 
 		// Call the jump manager.
 		JumpManagement();
@@ -85,12 +86,14 @@ public class MoveBehaviour : GenericBehaviour
 
     void AttackManagement()
     {
+        if (speed < 0.1)
+        {
+            if (!start_attack_strong)
+                PunchAttack();
 
-        if(!start_attack_strong)
-            PunchAttack();
-
-        if(!start_attack_weak)
-            KickAttack();
+            if (!start_attack_weak)
+                KickAttack();
+        }
 
     }
 
