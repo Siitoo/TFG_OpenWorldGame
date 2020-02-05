@@ -334,14 +334,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left_kick: {fileID: 1938946635}
   right_kick: {fileID: 450068541}
-  kick1_dmg: 10
-  kick2_dmg: 20
-  kick3_dmg: 30
+  kick1_dmg: 5
+  kick2_dmg: 10
+  kick3_dmg: 15
   left_punch: {fileID: 1028324511}
   right_punch: {fileID: 1150181700}
-  punch1_dmg: 10
-  punch2_dmg: 10
-  punch3_dmg: 10
+  punch1_dmg: 3
+  punch2_dmg: 5
+  punch3_dmg: 2
 --- !u!1 &9071666394059441990
 GameObject:
   m_ObjectHideFlags: 0
