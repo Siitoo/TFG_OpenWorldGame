@@ -59,8 +59,12 @@ public class MoveBehaviour : GenericBehaviour
 		// Get jump input.
 		if (!jump && behaviourManager.inputController.JumpButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
 		{
-            if(behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
-			    jump = true;
+            if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+                if (behaviourManager.npc_selected == null)
+                    jump = true;
+
+            if (!jump)
+                behaviourManager.do_dialog = true;
 		}
 
         if(behaviourManager.inputController.StrongButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
@@ -83,15 +87,29 @@ public class MoveBehaviour : GenericBehaviour
 	public override void LocalFixedUpdate()
 	{
 
-        AttackManagement();
+        if(!behaviourManager.do_dialog)
+            AttackManagement();
 
-        if(!start_attack_strong && !start_attack_weak)
+        if(!start_attack_strong && !start_attack_weak && !behaviourManager.do_dialog)
 		    // Call the basic movement manager.
 		    MovementManagement(behaviourManager.GetH, behaviourManager.GetV);
 
 		// Call the jump manager.
 		JumpManagement();
-	}
+
+        
+        DialogManagement();
+    }
+
+    public void DialogManagement()
+    {
+        if (behaviourManager.do_dialog)
+        {
+            behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog();
+            behaviourManager.do_dialog = false;
+            behaviourManager.last_time_dialog = true;
+        }
+    }
 
     void AttackManagement()
     {

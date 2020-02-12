@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Manager
   - Enemy
+  - NPC
+  - Canvas
   layers:
   - Default
   - TransparentFX

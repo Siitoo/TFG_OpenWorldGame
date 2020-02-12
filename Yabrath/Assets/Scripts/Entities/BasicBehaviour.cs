@@ -48,8 +48,18 @@ public class BasicBehaviour : MonoBehaviour
 	// Get current default behaviour.
 	public int GetDefaultBehaviour {  get { return defaultBehaviour; } }
 
+    private float max_raycast_time = 0.6f;
+    private float actual_raycast_time = 0.0f;
+
+    private GameObject canvas;
+    public GameObject npc_selected = null;
+    public bool do_dialog = false;
+    public bool last_time_dialog = false;
+
 	void Awake ()
 	{
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
+        
         // Set up the references.
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
 		behaviours = new List<GenericBehaviour> ();
@@ -93,16 +103,42 @@ public class BasicBehaviour : MonoBehaviour
 		// Set the grounded test on the Animator Controller.
 		anim.SetBool(groundedBool, IsGrounded());
 
-        if(IsGrounded())
+        if(IsGrounded() && !do_dialog)
         {
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, transform.forward, out hit, 1.2f))
+            if (actual_raycast_time >= max_raycast_time)
             {
-                if(hit.transform.gameObject.tag == "NPC")
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 1.7f))
                 {
-                    Debug.Log("Yes");
+                    if (hit.transform.gameObject.tag == "NPC")
+                    {
+                        canvas.transform.GetChild(0).gameObject.SetActive(true);
+                        npc_selected = hit.transform.gameObject;
+                    }
+                    else
+                    {
+                        canvas.transform.GetChild(0).gameObject.SetActive(false);
+                        if (npc_selected != null)
+                            npc_selected.GetComponent<EntityDialog>().FinishDialog();
+
+                        last_time_dialog = false;
+                        npc_selected = null;
+                    }
                 }
+                else
+                {
+                    canvas.transform.GetChild(0).gameObject.SetActive(false);
+                    if (npc_selected != null)
+                        npc_selected.GetComponent<EntityDialog>().FinishDialog();
+
+                    last_time_dialog = false;
+                    npc_selected = null;
+                }
+
+                actual_raycast_time = 0.0f;
             }
+            else
+                actual_raycast_time += Time.deltaTime;
         }
 
 	}
