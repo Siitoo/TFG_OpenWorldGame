@@ -92,6 +92,19 @@ public class BasicBehaviour : MonoBehaviour
 		}
 		// Set the grounded test on the Animator Controller.
 		anim.SetBool(groundedBool, IsGrounded());
+
+        if(IsGrounded())
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, transform.forward, out hit, 1.2f))
+            {
+                if(hit.transform.gameObject.tag == "NPC")
+                {
+                    Debug.Log("Yes");
+                }
+            }
+        }
+
 	}
 
 	// Call the FixedUpdate functions of the active or overriding behaviours.

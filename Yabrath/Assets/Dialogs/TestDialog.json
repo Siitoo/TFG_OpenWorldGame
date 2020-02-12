@@ -1,0 +1,32 @@
+{
+  "dialogs": [
+    {
+      "id": 1,
+      "text": "Potatoes are good?",
+      "type": "NPCQuestionAnswered",
+      "answers": [ 2, 3 ]
+    },
+    {
+      "id": 2,
+      "text": "Yes",
+      "type": "PlayerAnswer",
+      "answers": [ 4 ]
+    },
+    {
+      "id": 3,
+      "text": "No",
+      "type": "PlayerAnswer",
+      "answer": [ 5 ]
+    },
+    {
+      "id": 4,
+      "text": "Good",
+      "type": "NPCFinal"
+    },
+    {
+      "id": 5,
+      "text": "Bad",
+      "type": "NPCFinal"
+    }
+  ]
+}
