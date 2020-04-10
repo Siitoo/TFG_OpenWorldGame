@@ -21,12 +21,14 @@
     {
       "id": 3,
       "text": "Good",
-      "type": "NPCFinal"
+      "type": "NPCFinal",
+      "answers": [ -1 ]
     },
     {
       "id": 4,
       "text": "Bad",
-      "type": "NPCFinal"
+      "type": "NPCFinal",
+      "answers": [ -1 ]
     }
   ]
 }

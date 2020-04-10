@@ -50,7 +50,7 @@ public class InputController : MonoBehaviour
     public float MouseY { private set { y_mouse = value; } get { return y_mouse; } }
     public float AxisX { private set { x_axis = value; } get { return x_axis; } }
     public float AxisY { private set { y_axis = value; } get { return y_axis; } }
-
+    
     public bool SprintButton { private set { sprint_button = value; } get { return sprint_button; } }
     public bool AimButton { private set { aim_button = value; } get { return aim_button; } }
     public bool ShootButton { private set { shoot_button = value; } get { return shoot_button; } }
@@ -91,7 +91,6 @@ public class InputController : MonoBehaviour
         if (Input.GetButton(strongAttackButton) == true || (state.Buttons.Y == ButtonState.Pressed && previous_state.Buttons.Y == ButtonState.Released)) StrongButton = true; else StrongButton = false;
         if (Input.GetButtonDown(jumpButton) == true || (state.Buttons.A == ButtonState.Pressed && previous_state.Buttons.A == ButtonState.Released)) JumpButton = true; else JumpButton = false;
         if (Input.GetButton(tumbleButton) == true || (state.Buttons.B == ButtonState.Pressed && previous_state.Buttons.B == ButtonState.Released)) TumbleButton = true; else TumbleButton = false;
-
 
     }
 

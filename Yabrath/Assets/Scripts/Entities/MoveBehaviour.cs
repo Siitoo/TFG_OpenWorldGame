@@ -105,7 +105,7 @@ public class MoveBehaviour : GenericBehaviour
     {
         if (behaviourManager.do_dialog)
         {
-            behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog();
+            behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog(0);
             behaviourManager.do_dialog = false;
             behaviourManager.last_time_dialog = true;
         }

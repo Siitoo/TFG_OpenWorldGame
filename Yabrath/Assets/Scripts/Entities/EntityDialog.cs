@@ -44,6 +44,13 @@ public class EntityDialog : MonoBehaviour
         }
         else if (new_actual != -2)
             actual_dialog = new_actual;
+        else
+        {
+            if(dialogs.dialogs[actual_dialog].answers.Length == 1)
+            {
+                actual_dialog = dialogs.dialogs[actual_dialog].answers[0];
+            }
+        }
 
         GameObject dialog_ui = canvas.transform.GetChild(1).gameObject;
         dialog_ui.SetActive(true);
@@ -52,7 +59,7 @@ public class EntityDialog : MonoBehaviour
 
         dialog_ui.transform.GetChild(0).GetComponent<Text>().text = dialogs.dialogs[actual_dialog].text;
 
-        if(dialogs.dialogs[actual_dialog].answers != null)
+        if(dialogs.dialogs[actual_dialog].answers[0] != -1)
         {
             for(int i = 0; i < dialogs.dialogs[actual_dialog].answers.Length; ++i)
             {
