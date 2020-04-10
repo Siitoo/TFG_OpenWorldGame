@@ -2,30 +2,36 @@
   "dialogs": [
     {
       "id": 0,
-      "text": "Potatoes are good?",
-      "type": "NPCQuestionAnswered",
-      "answers": [ 1, 2 ]
+      "text": "Potatoes are good.",
+      "type": "NPCTalk",
+      "answers": [ 1 ]
     },
     {
       "id": 1,
-      "text": "Yes",
-      "type": "PlayerAnswer",
-      "answers": [ 3 ]
+      "text": "What do you think?",
+      "type": "NPCQuestionAnswered",
+      "answers": [ 2, 3 ]
     },
     {
       "id": 2,
-      "text": "No",
+      "text": "Yes",
       "type": "PlayerAnswer",
       "answers": [ 4 ]
     },
     {
       "id": 3,
+      "text": "No",
+      "type": "PlayerAnswer",
+      "answers": [ 5 ]
+    },
+    {
+      "id": 4,
       "text": "Good",
       "type": "NPCFinal",
       "answers": [ -1 ]
     },
     {
-      "id": 4,
+      "id": 5,
       "text": "Bad",
       "type": "NPCFinal",
       "answers": [ -1 ]

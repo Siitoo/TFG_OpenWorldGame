@@ -49,29 +49,40 @@ public class EntityDialog : MonoBehaviour
             if(dialogs.dialogs[actual_dialog].answers.Length == 1)
             {
                 actual_dialog = dialogs.dialogs[actual_dialog].answers[0];
+
+                if (actual_dialog == -1)
+                {
+                    FinishDialog();
+                    return;
+                }
             }
         }
 
         GameObject dialog_ui = canvas.transform.GetChild(1).gameObject;
         dialog_ui.SetActive(true);
-        GameObject answers_ui = canvas.transform.GetChild(2).gameObject;
-        answers_ui.SetActive(true);
 
         dialog_ui.transform.GetChild(0).GetComponent<Text>().text = dialogs.dialogs[actual_dialog].text;
 
-        if(dialogs.dialogs[actual_dialog].answers[0] != -1)
+        if (dialogs.dialogs[actual_dialog].type != "NPCTalk")
         {
-            for(int i = 0; i < dialogs.dialogs[actual_dialog].answers.Length; ++i)
+
+            GameObject answers_ui = canvas.transform.GetChild(2).gameObject;
+            answers_ui.SetActive(true);
+
+            if (dialogs.dialogs[actual_dialog].answers[0] != -1)
             {
-                answers_ui.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[i]].text;
-                answers_ui.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
-                int tmp = i;
-                answers_ui.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { OnClickButtonDialog(tmp); });
+                for (int i = 0; i < dialogs.dialogs[actual_dialog].answers.Length; ++i)
+                {
+                    answers_ui.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[i]].text;
+                    answers_ui.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
+                    int tmp = i;
+                    answers_ui.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { OnClickButtonDialog(tmp); });
+                }
             }
-        }
-        else
-        {
-            answers_ui.SetActive(false);
+            else
+            {
+                answers_ui.SetActive(false);
+            }
         }
 
     }

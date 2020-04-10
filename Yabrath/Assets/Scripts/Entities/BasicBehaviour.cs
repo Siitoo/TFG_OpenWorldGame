@@ -141,14 +141,6 @@ public class BasicBehaviour : MonoBehaviour
                 actual_raycast_time += Time.deltaTime;
         }
 
-        if(last_time_dialog)
-        {
-            if(inputController.ShootButton || inputController.JumpButton)
-            {
-                npc_selected.GetComponent<EntityDialog>().NextDialog();
-            }
-        }
-
 	}
 
 	// Call the FixedUpdate functions of the active or overriding behaviours.

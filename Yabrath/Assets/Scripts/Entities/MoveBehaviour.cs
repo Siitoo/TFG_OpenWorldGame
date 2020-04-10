@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 // MoveBehaviour inherits from GenericBehaviour. This class corresponds to basic walk and run behaviour, it is the default behaviour.
 public class MoveBehaviour : GenericBehaviour
@@ -81,6 +83,7 @@ public class MoveBehaviour : GenericBehaviour
         {
             tumble = true;
         }
+
     }
 
 	// LocalFixedUpdate overrides the virtual function of the base class.
@@ -105,7 +108,13 @@ public class MoveBehaviour : GenericBehaviour
     {
         if (behaviourManager.do_dialog)
         {
-            behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog(0);
+            if(!behaviourManager.last_time_dialog)
+                behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog(0);
+            else
+            {
+                behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog();
+            }
+
             behaviourManager.do_dialog = false;
             behaviourManager.last_time_dialog = true;
         }
