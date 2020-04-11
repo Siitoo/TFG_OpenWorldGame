@@ -13,6 +13,7 @@ public class EntityDialog : MonoBehaviour
         public string text;
         public string type;
         public int[] answers;
+        public int questId;
     }
 
     [System.Serializable]
@@ -37,6 +38,7 @@ public class EntityDialog : MonoBehaviour
 
     public void NextDialog(int new_actual = -2)
     {
+       
         if (new_actual == -1)
         {
             FinishDialog();
@@ -56,6 +58,11 @@ public class EntityDialog : MonoBehaviour
                     return;
                 }
             }
+        }
+
+        if(dialogs.dialogs[actual_dialog].questId != -1)
+        {
+            
         }
 
         GameObject dialog_ui = canvas.transform.GetChild(1).gameObject;
