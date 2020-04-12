@@ -663,10 +663,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: c4fc1940-d127-45a1-bab6-746887505993
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Yabrath
+  organizationId: sancez-cortes-puerta
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
