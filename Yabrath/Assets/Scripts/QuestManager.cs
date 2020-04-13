@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class Quest
 {
@@ -46,6 +47,9 @@ public class QuestManager : MonoBehaviour
     public List<Quest> active_quests;
 
     public TextAsset text;
+
+    public Image mission_panel = null;
+    public GameObject text_base = null;
 
     void Awake()
     {
@@ -93,6 +97,19 @@ public class QuestManager : MonoBehaviour
             if (q.questId == id)
             {
                 active_quests.Add(q);
+
+                if(mission_panel != null)
+                {
+                    int childs = mission_panel.transform.childCount;
+
+                    GameObject go = GameObject.Instantiate(text_base,mission_panel.transform);
+                    go.transform.GetChild(0).GetComponent<Text>().text = q.name;
+                    go.transform.GetChild(1).GetComponent<Text>().text = q.description;
+
+                    go.GetComponent<RectTransform>().localPosition = new Vector3(0,200-100*childs,0);
+
+                }
+
                 break;
             }
         }
