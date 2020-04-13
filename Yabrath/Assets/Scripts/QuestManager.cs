@@ -43,6 +43,7 @@ public class QuestManager : MonoBehaviour
     }
 
     public Quests quests;
+    public List<Quest> active_quests;
 
     public TextAsset text;
 
@@ -51,6 +52,7 @@ public class QuestManager : MonoBehaviour
         string path = Application.dataPath + "/Quests/" + text.name + ".json";
         string json_string = File.ReadAllText(path);
         quests = JsonUtility.FromJson<Quests>(json_string);
+
     }
 
     public void CheckQuest(int id)
@@ -79,6 +81,18 @@ public class QuestManager : MonoBehaviour
 
                 CheckQuest(id);
 
+                break;
+            }
+        }
+    }
+
+    public void AddNewQuest(int id)
+    {
+        foreach (Quest q in quests.quests)
+        {
+            if (q.questId == id)
+            {
+                active_quests.Add(q);
                 break;
             }
         }

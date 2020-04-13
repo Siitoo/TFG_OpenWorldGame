@@ -13,7 +13,7 @@ public class EntityDialog : MonoBehaviour
         public string text;
         public string type;
         public int[] answers;
-        public int questId;
+        public int questID;
     }
 
     [System.Serializable]
@@ -71,8 +71,6 @@ public class EntityDialog : MonoBehaviour
         if (dialogs.dialogs[actual_dialog].type != "NPCTalk")
         {
 
-            
-
             if (dialogs.dialogs[actual_dialog].answers[0] != -1)
             {
                 answers_ui.SetActive(true);
@@ -100,7 +98,18 @@ public class EntityDialog : MonoBehaviour
 
     public void OnClickButtonDialog(int id_button)
     {
-        actual_dialog = dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[id_button]].answers[0];
+        if (dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[id_button]].questID != 0)
+        {
+            GameObject go = GameObject.FindGameObjectWithTag("Manager");
+
+            if (go != null)
+            {
+                go.GetComponent<QuestManager>().AddNewQuest(dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[id_button]].questID);
+            }
+        }
+
+       actual_dialog = dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[id_button]].answers[0];
+
        NextDialog(actual_dialog);
 
     }

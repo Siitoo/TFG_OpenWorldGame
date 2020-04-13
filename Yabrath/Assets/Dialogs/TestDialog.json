@@ -5,28 +5,28 @@
       "text": "Potatoes are good.",
       "type": "NPCTalk",
       "answers": [ 1 ],
-      "questID":  -1
+      "questID":  0
     },
     {
       "id": 1,
       "text": "What do you think?",
       "type": "NPCQuestionAnswered",
       "answers": [ 2, 3 ],
-      "questID": -1
+      "questID": 0
     },
     {
       "id": 2,
       "text": "Yes",
       "type": "PlayerAnswer",
       "answers": [ 4 ],
-      "questID": -1
+      "questID": 0
     },
     {
       "id": 3,
       "text": "No",
       "type": "PlayerAnswer",
       "answers": [ 5 ],
-      "questID": -1
+      "questID": 0
     },
     {
       "id": 4,

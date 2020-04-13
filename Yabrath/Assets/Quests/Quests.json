@@ -1,7 +1,7 @@
 {
   "quests": [
     {
-      "questId": 0,
+      "questId": 1,
       "name": "Defeat Potatoes",
       "description": "I need to you for defeat a bad potatoes",
       "current":  0 ,
