@@ -2,11 +2,19 @@
   "quests": [
     {
       "questId": 1,
-      "name": "Defeat Potatoes",
-      "description": "I need to you for defeat a bad potatoes",
-      "current":  0 ,
+      "name": "Investigate the rumor",
+      "description": "A citizen has seen a group of people who look dangerous coming into town",
+      "current": 0,
       "total": 1,
-      "completed":  false
+      "completed": false
+    },
+    {
+      "questId": 2,
+      "name": "Investigate the forest",
+      "description": "Investigate and eliminate if necessary the beasts of the forest",
+      "current": 0,
+      "total": 1,
+      "completed": false
     }
 
   ]
