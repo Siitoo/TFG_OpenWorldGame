@@ -1,0 +1,140 @@
+{
+  "dialogs": [
+    {
+      "id": 0,
+      "text": "Good morning, I am the assistant to the general of this city, I know you have just arrived and that today was your day off but I would like your help in certain matters.",
+      "type": "NPCTalk",
+      "answers": [ 1 ],
+      "questID": -1
+    },
+    {
+      "id": 1,
+      "text": "Would you be willing to help us?",
+      "type": "NPCQuestionAnswered",
+      "answers": [ 2, 3 ],
+      "questID": -1
+    },
+    {
+      "id": 2,
+      "text": "Yes",
+      "type": "PlayerAnswer",
+      "answers": [ 4 ],
+      "questID": -1
+    },
+    {
+      "id": 3,
+      "text": "No",
+      "type": "PlayerAnswer",
+      "answers": [ 5 ],
+      "questID": -1
+    },
+    {
+      "id": 4,
+      "text": "Well, I explain, in one hand a citizen on his way back to Zhilas has observed a small group of people behaving suspiciously on his way here.",
+      "type": "NPCTalk",
+      "answers": [ 6 ],
+      "questID": -1
+    },
+    {
+      "id": 5,
+      "text": "Don't worry and rest assured that tomorrow will be a hard day",
+      "type": "NPCFinal",
+      "answers": [ -1 ],
+      "questID": -1
+    },
+    {
+      "id": 6,
+      "text": "On the other hand, several woodcutters have sighted strange beings in the vicinity of the forest that attack everything that enters the forest. ",
+      "type": "NPCTalk",
+      "answers": [ 7 ],
+      "questID": -1
+    },
+    {
+      "id": 7,
+      "text": "Which of the two do you want to do?",
+      "type": "NPCQuestionAnswered",
+      "answers": [ 8, 9 ],
+      "questID": -1
+    },
+    {
+      "id": 8,
+      "text": "Rumor",
+      "type": "PlayerAnswer",
+      "answers": [ 10 ],
+      "questID": 0
+    },
+    {
+      "id": 9,
+      "text": "Forest",
+      "type": "PlayerAnswer",
+      "answers": [ 11 ],
+      "questID": 0
+    },
+    {
+      "id": 10,
+      "text": "You want to go to the forest anyway? ",
+      "type": "NPCQuestionAnswered",
+      "answers": [ 12,13 ],
+      "questID": -1
+    },
+    {
+      "id": 11,
+      "text": "You want to go to investigate the rumor anyway? ",
+      "type": "NPCQuestionAnswered",
+      "answers": [ 14,15 ],
+      "questID": -1
+    },
+    {
+      "id": 12,
+      "text": "Yes ",
+      "type": "PlayerAnswer",
+      "answers": [ 17 ],
+      "questID": 0
+    },
+    {
+      "id": 13,
+      "text": "No",
+      "type": "PlayerAnswer",
+      "answers": [ 16 ],
+      "questID": -1
+    },
+
+    {
+      "id": 14,
+      "text": "Yes ",
+      "type": "PlayerAnswer",
+      "answers": [ 18 ],
+      "questID": 0
+    },
+    {
+      "id": 15,
+      "text": "No",
+      "type": "PlayerAnswer",
+      "answers": [ 16 ],
+      "questID": -1
+    },
+    {
+      "id": 16,
+      "text": "Don't worry, I'll go then",
+      "type": "NPCTalk",
+      "answers": [ 17 ],
+      "questID": -1
+    },
+    {
+      "id": 17,
+      "text": "Thanks a lot",
+      "type": "NPCFinal",
+      "answers": [ -1 ],
+      "questID": -1
+    },
+    {
+      "id": 18,
+      "text": "Thanks a lot",
+      "type": "NPCFinal",
+      "answers": [ -1 ],
+      "questID": -1
+    }
+
+
+  ]
+}

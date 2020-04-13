@@ -60,10 +60,8 @@ public class EntityDialog : MonoBehaviour
             }
         }
 
-        if(dialogs.dialogs[actual_dialog].questId != -1)
-        {
-            
-        }
+        GameObject answers_ui = canvas.transform.GetChild(2).gameObject;
+        answers_ui.SetActive(false);
 
         GameObject dialog_ui = canvas.transform.GetChild(1).gameObject;
         dialog_ui.SetActive(true);
@@ -73,11 +71,12 @@ public class EntityDialog : MonoBehaviour
         if (dialogs.dialogs[actual_dialog].type != "NPCTalk")
         {
 
-            GameObject answers_ui = canvas.transform.GetChild(2).gameObject;
-            answers_ui.SetActive(true);
+            
 
             if (dialogs.dialogs[actual_dialog].answers[0] != -1)
             {
+                answers_ui.SetActive(true);
+
                 for (int i = 0; i < dialogs.dialogs[actual_dialog].answers.Length; ++i)
                 {
                     answers_ui.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[i]].text;
@@ -85,10 +84,6 @@ public class EntityDialog : MonoBehaviour
                     int tmp = i;
                     answers_ui.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { OnClickButtonDialog(tmp); });
                 }
-            }
-            else
-            {
-                answers_ui.SetActive(false);
             }
         }
 

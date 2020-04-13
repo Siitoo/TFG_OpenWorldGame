@@ -108,7 +108,7 @@ public class BasicBehaviour : MonoBehaviour
             if (actual_raycast_time >= max_raycast_time)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, 1.7f))
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 2.3f))
                 {
                     if (hit.transform.gameObject.tag == "NPC")
                     {
