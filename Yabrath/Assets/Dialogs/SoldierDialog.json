@@ -1,0 +1,12 @@
+{
+  "dialogs": [
+    {
+      "id": 0,
+      "text": "Hey, what do you want? Get out of my way if you don't want a fight.",
+      "type": "NPCTalk",
+      "answers": [ -1 ],
+      "questID": 0
+    }
+
+  ]
+}

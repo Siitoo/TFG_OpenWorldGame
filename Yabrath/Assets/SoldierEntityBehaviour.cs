@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForestEntityBehaviour : MonoBehaviour
+public class SoldierEntityBehaviour : MonoBehaviour
 {
     EntityLife life;
     bool seePlayer = false;
@@ -25,42 +25,43 @@ public class ForestEntityBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (seePlayer && !die)
+        if (gameObject.tag == "Enemy")
         {
-            if (!attack)
-                Movement();
-
-            if (Mathf.Abs(Vector3.SqrMagnitude(transform.position - player_transform.position)) <= 1.0f)
+            if (seePlayer && !die)
             {
-                attack = true;
-            }
-            else
-                attack = false;
+                if (!attack)
+                    Movement();
 
-            anim.SetBool("AttackRange", attack);
+                if (Mathf.Abs(Vector3.SqrMagnitude(transform.position - player_transform.position)) <= 1.0f)
+                {
+                    attack = true;
+                }
+                else
+                    attack = false;
 
-        }
+                anim.SetBool("AttackRange", attack);
 
-        if (life.actual_life <= 0)
-        {
-
-            if (!die)
-            {
-                anim.SetBool("Die", true);
-                GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(3, 1);
-                StartCoroutine("DieTime");
             }
 
-            die = true;
-        }
+            if (life.actual_life <= 0)
+            {
 
+                if (!die)
+                {
+                    anim.SetBool("Die", true);
+                    GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(3, 1);
+                    StartCoroutine("DieTime");
+                }
+
+                die = true;
+            }
+        }
     }
 
     void Movement()
     {
         transform.LookAt(player_transform);
-        transform.Translate(Vector3.forward*Time.deltaTime);
+        transform.Translate(Vector3.forward * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,7 +73,14 @@ public class ForestEntityBehaviour : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player" && gameObject.tag == "Enemy")
+        {
+            seePlayer = true;
+            anim.SetBool("SeePlayer", seePlayer);
+        }
+    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -88,5 +96,4 @@ public class ForestEntityBehaviour : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
-
 }

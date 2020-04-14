@@ -106,10 +106,12 @@ GameObject:
   - component: {fileID: 8903625052749850728}
   - component: {fileID: 8903625052749850724}
   - component: {fileID: 8903625052749850727}
-  - component: {fileID: 8903625052749850730}
+  - component: {fileID: -4877991050538609366}
+  - component: {fileID: -2445845773205474798}
+  - component: {fileID: 6666175251635609035}
   m_Layer: 0
   m_Name: SoldierEnemy
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +194,7 @@ MonoBehaviour:
   max_life: 100
   actual_life: 0
   rect: {fileID: 8903625052594791065}
---- !u!114 &8903625052749850730
+--- !u!114 &-4877991050538609366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,9 +203,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 626540044971638484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b74cc81265d93174d97f3adcfff4ff2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 671ee23c6b3f05a4e8b7ea5dd599b082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2445845773205474798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626540044971638484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6bb48d618688149a2d15dfe37723fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 4900000, guid: 7ee846061effbf94a92dcb359cdfdd51, type: 3}
+  dialogs:
+    dialogs: []
+--- !u!136 &6666175251635609035
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626540044971638484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &684843522716959629
 GameObject:
   m_ObjectHideFlags: 0
