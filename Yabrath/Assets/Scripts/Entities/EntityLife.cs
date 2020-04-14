@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class EntityLife : MonoBehaviour
 {
     public int max_life = 100;
