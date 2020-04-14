@@ -26,6 +26,12 @@ public class EntityLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rect.gameObject.activeInHierarchy == false)
+        {
+            if (gameObject.tag == "Enemy")
+                rect.gameObject.SetActive(true);
+        }
+
         if (last_life != actual_life)
         {
             need_update_hp = true;
