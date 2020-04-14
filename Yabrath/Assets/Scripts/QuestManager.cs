@@ -68,11 +68,15 @@ public class QuestManager : MonoBehaviour
                 if(q.current >= q.total)
                 {
                     q.completed = true;
+
+                    active_quests.Remove(q);
+                    UpdateQuestPanel();
                 }
 
                 break;
             }
         }
+
     }
 
     public void AddCurrent(int id,int value)
@@ -98,19 +102,36 @@ public class QuestManager : MonoBehaviour
             {
                 active_quests.Add(q);
 
-                if(mission_panel != null)
-                {
-                    int childs = mission_panel.transform.childCount;
-
-                    GameObject go = GameObject.Instantiate(text_base,mission_panel.transform);
-                    go.transform.GetChild(0).GetComponent<Text>().text = q.name;
-                    go.transform.GetChild(1).GetComponent<Text>().text = q.description;
-
-                    go.GetComponent<RectTransform>().localPosition = new Vector3(0,200-100*childs,0);
-
-                }
+                UpdateQuestPanel();
 
                 break;
+            }
+        }
+    }
+
+    public void UpdateQuestPanel()
+    {
+        int childs = mission_panel.transform.childCount;
+
+        for (int i = 1; i < childs; ++i)
+        {
+            GameObject.Destroy(mission_panel.transform.GetChild(i).gameObject);
+        }
+
+        int discountChilds = 1;
+
+        foreach (Quest q in active_quests)
+        {
+            if (mission_panel != null)
+            {
+                GameObject go = GameObject.Instantiate(text_base, mission_panel.transform);
+                go.transform.GetChild(0).GetComponent<Text>().text = q.name;
+                go.transform.GetChild(1).GetComponent<Text>().text = q.description;
+
+                go.GetComponent<RectTransform>().localPosition = new Vector3(0, 200 - 100 * discountChilds, 0);
+
+                discountChilds++;
+
             }
         }
     }

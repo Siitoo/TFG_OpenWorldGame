@@ -6,11 +6,19 @@ public class QuestTrigger : MonoBehaviour
 {
     public int questId = 1;
 
+    public int addQuest = -1;
+
     private void OnTriggerEnter(Collider other)
     {
-        GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(questId, 1);
+        QuestManager manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>();
+
+        manager.AddCurrent(questId, 1);
+
+        if (addQuest != -1)
+        {
+            manager.AddNewQuest(addQuest);
+        }
 
         Destroy(this.gameObject);
-
     }
 }

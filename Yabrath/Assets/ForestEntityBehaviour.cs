@@ -43,14 +43,13 @@ public class ForestEntityBehaviour : MonoBehaviour
        
         if(life.actual_life <= 0)
         {
-            
-
+           
             if(!die)
             {
                 anim.SetBool("Die", true);
+                GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(3,1);
                 StartCoroutine("DieTime");
             }
-
 
             die = true;
         }

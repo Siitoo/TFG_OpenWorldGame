@@ -15,7 +15,24 @@
       "current": 0,
       "total": 1,
       "completed": false
+    },
+    {
+      "questId": 3,
+      "name": "Kill the objectives",
+      "description": "Kill the enemies in forest",
+      "current": 0,
+      "total": 4,
+      "completed": false
+    },
+    {
+      "questId": 4,
+      "name": "Kill the vanguard",
+      "description": "Eliminate the targets before they call for reinforcements",
+      "current": 0,
+      "total": 3,
+      "completed": false
     }
+
 
   ]
 }
