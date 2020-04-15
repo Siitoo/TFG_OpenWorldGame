@@ -8,7 +8,6 @@ TagManager:
   - Enemy
   - NPC
   - Canvas
-  - Sun
   layers:
   - Default
   - TransparentFX

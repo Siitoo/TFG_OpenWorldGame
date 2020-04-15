@@ -11,8 +11,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
 
     Animator anim;
     Transform player_transform;
-    public Transform end_point;
-    private float vel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +20,6 @@ public class SoldierEntityBehaviour : MonoBehaviour
         seePlayer = anim.GetBool("SeePlayer");
         attack = anim.GetBool("AttackRange");
         player_transform = GameObject.FindGameObjectWithTag("Player").transform;
-        vel = GameObject.FindGameObjectWithTag("Sun").GetComponent<DayNightCycle>().sky_speed;
     }
 
     // Update is called once per frame
@@ -58,8 +56,6 @@ public class SoldierEntityBehaviour : MonoBehaviour
                 die = true;
             }
         }
-        else
-            MoveTo();
     }
 
     void Movement()
@@ -100,18 +96,4 @@ public class SoldierEntityBehaviour : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
-
-    void MoveTo()
-    {
-        Vector3 dir = end_point.position;
-        dir.y = transform.position.y;
-
-        transform.LookAt(dir);
-
-        transform.Translate(Vector3.forward* vel * 2.0f * Time.deltaTime);
-
-
-
-    }
-
 }
