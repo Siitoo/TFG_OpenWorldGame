@@ -16,7 +16,7 @@ public class OnDoorTriggerEnter : MonoBehaviour
         if(other.tag == "Player")
         {
             gameObject.transform.localEulerAngles = new Vector3(0,-90,90);
-            gameObject.transform.localPosition = new Vector3(5.4f,0.0f,3.953f);
+            gameObject.transform.localPosition = new Vector3(6.1f,0.0f,5.1f);
         }
     }
 

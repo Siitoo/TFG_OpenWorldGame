@@ -51,12 +51,17 @@ public class QuestManager : MonoBehaviour
     public Image mission_panel = null;
     public GameObject text_base = null;
 
+    public GameObject questIconPrefab = null;
+    public List<GameObject> questIcons;
+
+    public GameObject[] questTrigger;
+
     void Awake()
     {
         string path = Application.dataPath + "/Quests/" + text.name + ".json";
         string json_string = File.ReadAllText(path);
         quests = JsonUtility.FromJson<Quests>(json_string);
-
+        questIcons = new List<GameObject>();
     }
 
     public void CheckQuest(int id)
@@ -102,6 +107,15 @@ public class QuestManager : MonoBehaviour
             {
                 active_quests.Add(q);
 
+                if(id-1 < questTrigger.Length)
+                {
+                    questTrigger[id-1].SetActive(true);
+
+                    GameObject go = GameObject.Instantiate(questIconPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
+                    go.GetComponent<QuestIconIdentifier>().questId = id;
+                    questIcons.Add(go);
+                }
+
                 UpdateQuestPanel();
 
                 break;
@@ -131,26 +145,49 @@ public class QuestManager : MonoBehaviour
                 go.GetComponent<RectTransform>().localPosition = new Vector3(0, 200 - 100 * discountChilds, 0);
 
                 discountChilds++;
-
             }
         }
     }
 
-    public Transform quest_test = null;
-    public Transform icon = null;
     private void Update()
     {
-        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-
-        if(active_quests.Capacity != 0 && active_quests[0] != null)
+        if(questIcons != null && questIcons.Count > 0)
         {
-            Vector3 dir = quest_test.position - playerPosition;
+            foreach(GameObject go in questIcons)
+            {
+                GameObject triggerObject = questTrigger[go.GetComponent<QuestIconIdentifier>().questId-1];
 
-            float mag = Vector3.SqrMagnitude(dir);
+                Image image = go.GetComponent<Image>();
 
-            Vector3 newd = new Vector3(dir.normalized.x * 10, 72f, dir.normalized.y * 10);
-            //icon.position = playerPosition + newd;
+                float minX = image.GetPixelAdjustedRect().width / 2;
+                float maxX = Screen.width - minX;
 
+                float minY = image.GetPixelAdjustedRect().height / 2;
+                float maxY = Screen.height - minY;
+
+                Vector2 pos = Camera.main.WorldToScreenPoint(triggerObject.transform.position);
+
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+                if(Vector3.Dot((triggerObject.transform.position - Camera.main.transform.position), Camera.main.transform.forward) < 0)
+                {
+                    if(pos.x < Screen.width/2)
+                    {
+                        pos.x = maxX;
+                    }
+                    else
+                    {
+                        pos.x = minX;
+                    }
+                }
+
+
+                pos.x = Mathf.Clamp(pos.x, minX, maxX);
+                pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+                go.transform.position = pos;
+                go.transform.GetChild(0).GetComponent<Text>().text = ((int)Vector3.Distance(triggerObject.transform.position, player.transform.position)).ToString();
+            }
         }
     }
 
