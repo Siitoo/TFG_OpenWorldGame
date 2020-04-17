@@ -136,5 +136,22 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public Transform quest_test = null;
+    public Transform icon = null;
+    private void Update()
+    {
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+        if(active_quests.Capacity != 0 && active_quests[0] != null)
+        {
+            Vector3 dir = quest_test.position - playerPosition;
+
+            float mag = Vector3.SqrMagnitude(dir);
+
+            Vector3 newd = new Vector3(dir.normalized.x * 10, 72f, dir.normalized.y * 10);
+            //icon.position = playerPosition + newd;
+
+        }
+    }
 
 }
