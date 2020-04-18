@@ -91,6 +91,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
         }
     }
 
+
     IEnumerator DieTime()
     {
         yield return new WaitForSeconds(3f);

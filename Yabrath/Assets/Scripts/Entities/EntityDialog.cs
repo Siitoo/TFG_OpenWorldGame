@@ -38,7 +38,25 @@ public class EntityDialog : MonoBehaviour
 
     public void NextDialog(int new_actual = -2)
     {
-       
+       if(dialogs.dialogs[actual_dialog].questID != 0)
+        {
+
+            GameObject go = GameObject.FindGameObjectWithTag("Manager");
+
+            if (go != null)
+            {
+                go.GetComponent<QuestManager>().AddNewQuest(dialogs.dialogs[actual_dialog].questID);
+            }
+
+            if (dialogs.dialogs[actual_dialog].answers[0] == -4)
+            {
+                SetEnemyGroup();
+
+                FinishDialog();
+                return;
+            }
+        }
+
         if (new_actual == -1)
         {
             FinishDialog();
@@ -48,7 +66,7 @@ public class EntityDialog : MonoBehaviour
             actual_dialog = new_actual;
         else
         {
-            if(dialogs.dialogs[actual_dialog].answers.Length == 1)
+            if (dialogs.dialogs[actual_dialog].answers.Length == 1)
             {
                 actual_dialog = dialogs.dialogs[actual_dialog].answers[0];
 
@@ -112,6 +130,22 @@ public class EntityDialog : MonoBehaviour
 
        NextDialog(actual_dialog);
 
+    }
+
+    public void SetEnemyGroup()
+    {
+        if (transform.parent.tag == "EnemyGroup")
+        {
+            GameObject parent = transform.parent.gameObject;
+
+            for (int i = 0; i < parent.transform.childCount; ++i)
+            {
+                if (parent.transform.GetChild(i).tag == "NPC")
+                    parent.transform.GetChild(i).tag = "Enemy";
+                    parent.transform.GetChild(i).tag = "Enemy";
+            }
+
+        }
     }
 
 }

@@ -4,8 +4,15 @@
       "id": 0,
       "text": "Hey, what do you want? Get out of my way if you don't want a fight.",
       "type": "NPCTalk",
-      "answers": [ -1 ],
+      "answers": [ 1 ],
       "questID": 0
+    },
+    {
+      "id": 1,
+      "text": "Oh, you're a mercenary from the capital. Kill him, guys",
+      "type": "NPCTalk",
+      "answers": [ -4 ],
+      "questID": 4
     }
 
   ]

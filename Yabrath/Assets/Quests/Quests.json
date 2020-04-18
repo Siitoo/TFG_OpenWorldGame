@@ -6,7 +6,8 @@
       "description": "A citizen has seen a group of people who look dangerous coming into town",
       "current": 0,
       "total": 1,
-      "completed": false
+      "completed": false,
+      "nextQuest": 0
     },
     {
       "questId": 2,
@@ -14,7 +15,8 @@
       "description": "Investigate and eliminate if necessary the beasts of the forest",
       "current": 0,
       "total": 1,
-      "completed": false
+      "completed": false,
+      "nextQuest": 0
     },
     {
       "questId": 3,
@@ -22,7 +24,8 @@
       "description": "Kill the enemies in forest",
       "current": 0,
       "total": 4,
-      "completed": false
+      "completed": false,
+      "nextQuest": 5
     },
     {
       "questId": 4,
@@ -30,9 +33,27 @@
       "description": "Eliminate the targets before they call for reinforcements",
       "current": 0,
       "total": 3,
-      "completed": false
+      "completed": false,
+      "nextQuest": 6
+    },
+    {
+      "questId": 5,
+      "name": "Talk to the general's assistant",
+      "description": "Go to the city and inform",
+      "current": 0,
+      "total": 1,
+      "completed": false,
+      "nextQuest": 0
+    },
+    {
+      "questId": 6,
+      "name": "Talk to the assistant",
+      "description": "Go to the city and inform",
+      "current": 0,
+      "total": 1,
+      "completed": false,
+      "nextQuest": 0
     }
-
 
   ]
 }

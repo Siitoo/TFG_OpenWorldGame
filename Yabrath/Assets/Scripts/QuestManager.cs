@@ -35,6 +35,7 @@ public class QuestManager : MonoBehaviour
         public int current;
         public int total;
         public bool completed;
+        public int nextQuest;
     }
 
     [System.Serializable]
@@ -74,7 +75,24 @@ public class QuestManager : MonoBehaviour
                 {
                     q.completed = true;
 
+                    if(q.nextQuest > 0)
+                    {
+                        AddNewQuest(q.nextQuest);
+                    }
+
                     active_quests.Remove(q);
+
+                    foreach(GameObject go in questIcons)
+                    {
+                        if(go.GetComponent<QuestIconIdentifier>().questId == q.questId)
+                        {
+                            questIcons.Remove(go);
+
+                            Destroy(go);
+                            break;
+                        }
+                    }
+
                     UpdateQuestPanel();
                 }
 
