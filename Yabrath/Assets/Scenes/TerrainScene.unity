@@ -151,7 +151,12 @@ PrefabInstance:
     - target: {fileID: 4565317462966209564, guid: 3b213f0f36d42b44fbb9042c7783746b,
         type: 3}
       propertyPath: kick1_dmg
-      value: 5
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565317462966209564, guid: 3b213f0f36d42b44fbb9042c7783746b,
+        type: 3}
+      propertyPath: punch1_dmg
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 9071666394002318041, guid: 3b213f0f36d42b44fbb9042c7783746b,
         type: 3}

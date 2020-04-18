@@ -32,7 +32,7 @@
       "name": "Kill the vanguard",
       "description": "Eliminate the targets before they call for reinforcements",
       "current": 0,
-      "total": 3,
+      "total": 4,
       "completed": false,
       "nextQuest": 6
     },

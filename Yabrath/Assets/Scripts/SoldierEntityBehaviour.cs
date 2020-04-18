@@ -49,7 +49,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
                 if (!die)
                 {
                     anim.SetBool("Die", true);
-                    GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(3, 1);
+                    GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(4, 1);
                     StartCoroutine("DieTime");
                 }
 
