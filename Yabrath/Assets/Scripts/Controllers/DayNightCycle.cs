@@ -25,6 +25,9 @@ public class DayNightCycle : MonoBehaviour
 
     public float sky_speed = 1.0f;
 
+    private bool last_frame_day = true;
+    private bool actual_frame_day = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,8 +57,25 @@ public class DayNightCycle : MonoBehaviour
         skybox_material.SetFloat("_AtmosphereThickness", atmosphere_stickness);
 
         if (dot > 0)
+        {
             transform.Rotate(day_rotate_speed * Time.deltaTime * sky_speed);
+            actual_frame_day = true;
+        }
         else
+        {
             transform.Rotate(night_rotate_speed * Time.deltaTime * sky_speed);
+            actual_frame_day = false;
+        }
+
+        if (!last_frame_day)
+        {
+            if (actual_frame_day)
+                GameObject.FindGameObjectWithTag("Manager").GetComponent<WorldManager>().setNewDay();
+
+            last_frame_day = actual_frame_day;
+        }
+        else
+            last_frame_day = actual_frame_day;
+
     }
 }

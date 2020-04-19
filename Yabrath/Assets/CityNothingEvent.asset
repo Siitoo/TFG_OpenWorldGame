@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf318a801b932e4c8c82a9852329343, type: 3}
+  m_Name: CityNothingEvent
+  m_EditorClassIdentifier: 
+  dayStart: 1
+  QuestNeeded: 
+  priority: 2
+  result: The soldiers of the city were unable to deal with the enemies of the forest
+    and the bandits, at this moment the city is being attacked by both.

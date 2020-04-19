@@ -209,4 +209,9 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public bool CheckQuestCompleted(int id)
+    {
+        return quests.quests[id].completed;
+    }
+
 }
