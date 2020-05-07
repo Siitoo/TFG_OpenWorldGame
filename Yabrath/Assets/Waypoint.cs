@@ -7,8 +7,8 @@ public class Waypoint : MonoBehaviour
     public Waypoint previousWaypoint;
     public Waypoint nextWaypoint;
 
-    [Range(0f, 5f)]
-    public float width = 3f;
+    [Range(0f, 10f)]
+    public float width = 5f;
 
     public List<Waypoint> branches;
 

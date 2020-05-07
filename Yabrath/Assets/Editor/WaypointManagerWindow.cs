@@ -156,6 +156,10 @@ public class WaypointManagerWindow : EditorWindow
         Waypoint waypoint = waypointObject.GetComponent<Waypoint>();
 
         Waypoint branchedFrom = Selection.activeGameObject.GetComponent<Waypoint>();
+
+        if (branchedFrom.branches == null)
+            branchedFrom.branches = new List<Waypoint>();
+
         branchedFrom.branches.Add(waypoint);
 
         waypoint.transform.position = branchedFrom.transform.position;
