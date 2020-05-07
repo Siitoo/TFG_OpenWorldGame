@@ -13,7 +13,7 @@ public class SimpleTrafficCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = Random.Range(0.5f, 2.5f);
+        movementSpeed = Random.Range(1.5f, 3.5f);
     }
 
     // Update is called once per frame
