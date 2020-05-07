@@ -143,6 +143,10 @@ public class QuestManager : MonoBehaviour
 
     public void UpdateQuestPanel()
     {
+        if(mission_panel.transform.childCount > 0)
+        {
+            mission_panel.gameObject.SetActive(true);
+        }
         int childs = mission_panel.transform.childCount;
 
         for (int i = 1; i < childs; ++i)
