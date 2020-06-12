@@ -67,9 +67,6 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
             // Mouse:
             angleH += Mathf.Clamp(inputController.MouseX, -1, 1) * horizontalAimingSpeed;
             angleV += Mathf.Clamp(inputController.MouseY, -1, 1) * verticalAimingSpeed;
-            // Joystick:
-            angleH += Mathf.Clamp(inputController.RightStick.x, -1, 1) * 60 * horizontalAimingSpeed * Time.deltaTime;
-            angleV += Mathf.Clamp(inputController.RightStick.y, -1, 1) * 60 * verticalAimingSpeed * Time.deltaTime;
 
             // Set vertical movement limit.
             angleV = Mathf.Clamp(angleV, minVerticalAngle, targetMaxVerticalAngle);

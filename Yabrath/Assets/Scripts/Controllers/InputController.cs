@@ -1,16 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XInputDotNetPure;
 
 public class InputController : MonoBehaviour
 {
-    //Todo if have time: reconfiguration inputs
-    //Xbox Controller configuration
-    private bool player_index_set = false;
-    private PlayerIndex player_index = PlayerIndex.One;
-    private GamePadState state;
-    private GamePadState previous_state;
 
     [Header("Keyboard configuration")]
     //Keyboard configuration 
@@ -28,8 +21,6 @@ public class InputController : MonoBehaviour
     private string axis_y = "Vertical";
 
     //private save data
-    private Vector2 left_stick = Vector2.zero;
-    private Vector2 right_stick = Vector2.zero;
     private float x_mouse = 0.0f;
     private float y_mouse = 0.0f;
     private float x_axis = 0.0f;
@@ -44,8 +35,6 @@ public class InputController : MonoBehaviour
     private bool tumble_button = false;
 
     //public value to read
-    public Vector2 LeftStick { private set { left_stick = value; }  get { return left_stick; } }
-    public Vector2 RightStick { private set { right_stick = value; } get { return right_stick; } }
     public float MouseX { private set { x_mouse = value; } get { return x_mouse; } }
     public float MouseY { private set { y_mouse = value; } get { return y_mouse; } }
     public float AxisX { private set { x_axis = value; } get { return x_axis; } }
@@ -59,56 +48,27 @@ public class InputController : MonoBehaviour
     public bool JumpButton { private set { jump_button = value; } get { return jump_button; } }
     public bool TumbleButton { private set { tumble_button = value; } get { return tumble_button; } }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetController();
-    }
 
     // Update is called once per frame
     void Update()
     {
-        previous_state = state;
-        state = GamePad.GetState(player_index);
-        SetController();
-
+       
         //Movement
         AxisX = Input.GetAxis(axis_x);
         AxisY = Input.GetAxis(axis_y);
-        LeftStick = new Vector2 (state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
 
         //Camera Rotation
         MouseX = Input.GetAxis(mouse_x);
         MouseY = Input.GetAxis(mouse_y);
-        Vector2 tmp = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-        RightStick = tmp;
 
         //Actions
-        if (Input.GetButton(sprintButton) == true || state.Buttons.LeftStick == ButtonState.Pressed) SprintButton = true; else SprintButton = false;
-        if (Input.GetButton(aimButton) == true || state.Buttons.LeftShoulder == ButtonState.Pressed) AimButton = true; else AimButton = false;
-        if (Input.GetButton(shootButton) == true || state.Buttons.RightShoulder == ButtonState.Pressed) ShootButton = true; else ShootButton= false;
-        if (Input.GetButton(weakAttackButton) == true || (state.Buttons.X == ButtonState.Pressed && previous_state.Buttons.X == ButtonState.Released)) WeakAttackButton = true; else WeakAttackButton = false;
-        if (Input.GetButton(strongAttackButton) == true || (state.Buttons.Y == ButtonState.Pressed && previous_state.Buttons.Y == ButtonState.Released)) StrongButton = true; else StrongButton = false;
-        if (Input.GetButtonDown(jumpButton) == true || (state.Buttons.A == ButtonState.Pressed && previous_state.Buttons.A == ButtonState.Released)) JumpButton = true; else JumpButton = false;
-        if (Input.GetButton(tumbleButton) == true || (state.Buttons.B == ButtonState.Pressed && previous_state.Buttons.B == ButtonState.Released)) TumbleButton = true; else TumbleButton = false;
+        if (Input.GetButton(sprintButton) == true) SprintButton = true; else SprintButton = false;
+        if (Input.GetButton(shootButton) == true) ShootButton = true; else ShootButton= false;
+        if (Input.GetButton(weakAttackButton) == true) WeakAttackButton = true; else WeakAttackButton = false;
+        if (Input.GetButton(strongAttackButton) == true) StrongButton = true; else StrongButton = false;
+        if (Input.GetButtonDown(jumpButton) == true) JumpButton = true; else JumpButton = false;
+        if (Input.GetButton(tumbleButton) == true) TumbleButton = true; else TumbleButton = false;
 
     }
 
-    private void SetController()
-    {
-        if (!player_index_set || !previous_state.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    player_index = testPlayerIndex;
-                    player_index_set = true;
-                    break;
-                }
-            }
-        }
-    }
 }

@@ -112,7 +112,11 @@ public class BasicBehaviour : MonoBehaviour
                 {
                     if (hit.transform.gameObject.tag == "NPC")
                     {
-                        canvas.transform.GetChild(0).gameObject.SetActive(true);
+                        if (!last_time_dialog)
+                            canvas.transform.GetChild(0).gameObject.SetActive(true);
+                        else
+                            canvas.transform.GetChild(0).gameObject.SetActive(false);
+
                         npc_selected = hit.transform.gameObject;
                     }
                     else

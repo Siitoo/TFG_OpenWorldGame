@@ -195,7 +195,6 @@ GameObject:
   - component: {fileID: 9071666394002318046}
   - component: {fileID: 9071666394002318045}
   - component: {fileID: 9071666394002318018}
-  - component: {fileID: 9071666394002318016}
   - component: {fileID: 4565317462966209564}
   m_Layer: 0
   m_Name: Player
@@ -303,23 +302,9 @@ MonoBehaviour:
   turnSmoothing: 0.06
   sprintFOV: 100
   inputController: {fileID: 0}
---- !u!114 &9071666394002318016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9071666394002318041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247335de9c2ba3d49bbbada1d0562339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.2
-  crosshair: {fileID: 0}
-  aimTurnSmoothing: 0.15
-  aimPivotOffset: {x: 0.5, y: 1.2, z: 0}
-  aimCamOffset: {x: 0, y: 0.4, z: -0.7}
+  npc_selected: {fileID: 0}
+  do_dialog: 0
+  last_time_dialog: 0
 --- !u!114 &4565317462966209564
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -112,6 +112,7 @@ public class EntityDialog : MonoBehaviour
         dialog_ui.SetActive(false);
         GameObject answers_ui = canvas.transform.GetChild(2).gameObject;
         answers_ui.SetActive(false);
+        gameObject.tag = "Untagged";
     }
 
     public void OnClickButtonDialog(int id_button)
