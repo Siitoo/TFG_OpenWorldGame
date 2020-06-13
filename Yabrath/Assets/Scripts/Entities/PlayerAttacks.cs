@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttacks : MonoBehaviour
 {
@@ -16,6 +17,23 @@ public class PlayerAttacks : MonoBehaviour
     public int punch1_dmg = 10;
     public int punch2_dmg = 10;
     public int punch3_dmg = 10;
+
+    public float max_life = 100;
+    private float actual_life = 0;
+    public Slider slider = null;
+
+    private void Start()
+    {
+        actual_life = max_life;
+        slider.maxValue = max_life;
+        slider.value = actual_life;
+    }
+
+    public void GetDamage(float dmg)
+    {
+        actual_life -= dmg;
+        slider.value = actual_life;
+    }
 
     public void AttackKick1()
     {

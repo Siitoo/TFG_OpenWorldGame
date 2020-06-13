@@ -12,6 +12,8 @@ public class ForestEntityBehaviour : MonoBehaviour
     Animator anim;
     Transform player_transform;
 
+    public Transform hand = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,5 +90,22 @@ public class ForestEntityBehaviour : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
+
+    public void Attack(float dmg)
+    {
+        Collider[] colliders;
+        colliders = Physics.OverlapBox(hand.position, Vector3.up , hand.rotation);
+
+        foreach (Collider col in colliders)
+        {
+            if(col.tag == "Player")
+            {
+                col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
+                return;
+            }
+        }
+
+    }
+
 
 }

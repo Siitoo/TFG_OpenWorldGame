@@ -66,7 +66,10 @@ public class MoveBehaviour : GenericBehaviour
                     jump = true;
 
             if (!jump)
-                behaviourManager.do_dialog = true;
+            {
+                if ( behaviourManager.npc_selected != null && !behaviourManager.npc_selected.GetComponent<EntityDialog>().isQuestionAnswered())
+                    behaviourManager.do_dialog = true;
+            }
 		}
 
         if (behaviourManager.inputController.StrongButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
@@ -114,7 +117,7 @@ public class MoveBehaviour : GenericBehaviour
                 behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog(0);
             else
             {
-                behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog();
+                    behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog();
             }
 
             behaviourManager.do_dialog = false;

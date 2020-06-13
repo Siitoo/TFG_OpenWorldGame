@@ -12,6 +12,9 @@ public class SoldierEntityBehaviour : MonoBehaviour
     Animator anim;
     Transform player_transform;
 
+    public Transform Kick_left = null;
+    public Transform Kick_right = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,4 +100,40 @@ public class SoldierEntityBehaviour : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
+
+
+    public void AttackLeft(float dmg)
+    {
+        Collider[] colliders;
+        colliders = Physics.OverlapBox(Kick_left.position, Vector3.up * 1.5f, Kick_left.rotation);
+
+        foreach (Collider col in colliders)
+        {
+            if (col.tag == "Player")
+            {
+                col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
+                return;
+            }
+        }
+
+    }
+
+    public void AttackRight(float dmg)
+    {
+        Collider[] colliders;
+        Vector3 m = new Vector3(0.5f, 1, 0.5f);
+        colliders = Physics.OverlapBox(Kick_right.position, m , Kick_right.rotation);
+
+        foreach (Collider col in colliders)
+        {
+            if (col.tag == "Player")
+            {
+                col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
+                return;
+            }
+        }
+
+    }
+
+
 }

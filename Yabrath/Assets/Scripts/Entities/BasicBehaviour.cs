@@ -123,7 +123,7 @@ public class BasicBehaviour : MonoBehaviour
                     {
                         canvas.transform.GetChild(0).gameObject.SetActive(false);
                         if (npc_selected != null)
-                            npc_selected.GetComponent<EntityDialog>().FinishDialog();
+                            npc_selected.GetComponent<EntityDialog>().FinishDialog(false);
 
                         last_time_dialog = false;
                         npc_selected = null;
@@ -133,7 +133,7 @@ public class BasicBehaviour : MonoBehaviour
                 {
                     canvas.transform.GetChild(0).gameObject.SetActive(false);
                     if (npc_selected != null)
-                        npc_selected.GetComponent<EntityDialog>().FinishDialog();
+                        npc_selected.GetComponent<EntityDialog>().FinishDialog(false);
 
                     last_time_dialog = false;
                     npc_selected = null;

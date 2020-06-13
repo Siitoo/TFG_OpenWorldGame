@@ -105,14 +105,28 @@ public class EntityDialog : MonoBehaviour
 
     }
 
-    public void FinishDialog()
+
+    public bool isQuestionAnswered()
     {
-        actual_dialog = 0;
+        bool isQuestion = false;
+
+        if (dialogs.dialogs[actual_dialog].type == "NPCQuestionAnswered")
+            isQuestion = true;
+
+        return isQuestion;
+    }
+
+    public void FinishDialog(bool lost = true)
+    {
+       
         GameObject dialog_ui = canvas.transform.GetChild(1).gameObject;
         dialog_ui.SetActive(false);
         GameObject answers_ui = canvas.transform.GetChild(2).gameObject;
         answers_ui.SetActive(false);
-        gameObject.tag = "Untagged";
+
+        if(lost)
+            gameObject.tag = "Untagged";
+        actual_dialog = 0;
     }
 
     public void OnClickButtonDialog(int id_button)
@@ -129,7 +143,9 @@ public class EntityDialog : MonoBehaviour
 
        actual_dialog = dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[id_button]].answers[0];
 
-       NextDialog(actual_dialog);
+        GameObject tmp = GameObject.FindGameObjectWithTag("Player");
+        if (!tmp.GetComponent<BasicBehaviour>().do_dialog)
+            NextDialog(actual_dialog);
 
     }
 
