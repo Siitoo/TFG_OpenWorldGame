@@ -55,7 +55,8 @@ public class BasicBehaviour : MonoBehaviour
     public GameObject npc_selected = null;
     public bool do_dialog = false;
     public bool last_time_dialog = false;
-
+    public bool death = false;
+    private int death_anim = 0;
 	void Awake ()
 	{
         canvas = GameObject.FindGameObjectWithTag("Canvas");
@@ -75,10 +76,27 @@ public class BasicBehaviour : MonoBehaviour
 		colExtents = GetComponent<Collider>().bounds.extents;
 
         inputController = GameObject.FindGameObjectWithTag("Manager").GetComponent<InputController>();
+        death_anim = Animator.StringToHash("Death");
 	}
 
 	void Update()
 	{
+        if(death)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+            {
+                anim.SetBool(death_anim, false);
+                return;
+            }
+
+            if (!anim.GetBool(death_anim) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Death") )
+                anim.SetBool(death_anim, true);
+
+
+            return;
+        }
+
+
 		// Store the input axes.
 		h = inputController.AxisX;
 		v = inputController.AxisY;

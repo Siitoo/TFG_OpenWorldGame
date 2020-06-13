@@ -19,8 +19,12 @@ public class PlayerAttacks : MonoBehaviour
     public int punch3_dmg = 10;
 
     public float max_life = 100;
-    private float actual_life = 0;
+    public float actual_life = 0;
     public Slider slider = null;
+
+    public float time_to_regen = 10.0f;
+    public float regen_per_second = 5.0f;
+    private float actual_time = 0.0f;
 
     private void Start()
     {
@@ -29,10 +33,40 @@ public class PlayerAttacks : MonoBehaviour
         slider.value = actual_life;
     }
 
+    private void Update()
+    {
+        if(max_life > actual_life)
+        {
+            if(actual_time < time_to_regen)
+            {
+                actual_time += Time.deltaTime;
+            }
+            else
+            {
+                actual_life += regen_per_second * Time.deltaTime;
+
+                if (actual_life > max_life)
+                {
+                    actual_life = max_life;
+                    actual_time = 0.0f;
+                }
+
+                slider.value = actual_life;
+            }
+        }
+
+        if(actual_life <= 0.0f)
+        {
+            gameObject.GetComponent<BasicBehaviour>().death = true;
+        }
+
+    }
+
     public void GetDamage(float dmg)
     {
         actual_life -= dmg;
         slider.value = actual_life;
+        actual_time = 0.0f;
     }
 
     public void AttackKick1()
