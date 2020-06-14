@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9de80aac6bdc42c428e2549f27416e77
+guid: 37ecc2749a0bc6247b8c286ea308e194
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
@@ -39,7 +39,7 @@ ModelImporter:
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 95
+      lastFrame: 66
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -59,12 +59,18 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3485342
-        functionName: Attack
+      - time: 0.28664497
+        functionName: AttackLeft
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: b74cc81265d93174d97f3adcfff4ff2f,
-          type: 3}
-        floatParameter: 5
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 2
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4341388
+        functionName: AttackRight
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 6
         intParameter: 0
         messageOptions: 0
       transformMask: []
