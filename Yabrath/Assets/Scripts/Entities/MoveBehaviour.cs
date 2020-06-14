@@ -74,19 +74,20 @@ public class MoveBehaviour : GenericBehaviour
 
         if (behaviourManager.inputController.StrongButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
         {
-            if(!weakAttack)
+            if(!weakAttack && !behaviourManager.death)
                 strongAttack = true;
         }
 
         if (behaviourManager.inputController.WeakAttackButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
         {
-            if(!strongAttack)
+            if(!strongAttack && !behaviourManager.death)
                 weakAttack = true;
         }
 
         if (behaviourManager.inputController.TumbleButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
         {
-            tumble = true;
+            if(!behaviourManager.death)
+                tumble = true;
         }
 
     }
