@@ -164,7 +164,8 @@ public class QuestManager : MonoBehaviour
                 go.transform.GetChild(0).GetComponent<Text>().text = q.name;
                 go.transform.GetChild(1).GetComponent<Text>().text = q.description;
 
-                go.GetComponent<RectTransform>().localPosition = new Vector3(0, 200 - 100 * discountChilds, 0);
+                Vector3 tmp = go.GetComponent<RectTransform>().localPosition;
+                go.GetComponent<RectTransform>().localPosition = new Vector3(0, tmp.y - 80 * discountChilds, 0);
 
                 discountChilds++;
             }
