@@ -10,10 +10,15 @@ public class SimpleTrafficCharacterController : MonoBehaviour
     public Vector3 destination = Vector3.zero;
     public bool reachedDestination = false;
 
+    private GameObject sun = null;
+
     // Start is called before the first frame update
     void Start()
     {
         movementSpeed = Random.Range(1.5f, 3.5f);
+
+        sun = GameObject.FindGameObjectWithTag("Sun");
+
     }
 
     // Update is called once per frame
@@ -38,6 +43,12 @@ public class SimpleTrafficCharacterController : MonoBehaviour
                 reachedDestination = true;
             }
         }
+
+        if(!sun.GetComponent<DayNightCycle>().actual_frame_day)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
     public void SetDestination(Vector3 destination)

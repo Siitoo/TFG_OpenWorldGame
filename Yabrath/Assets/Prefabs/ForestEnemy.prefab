@@ -1743,6 +1743,7 @@ GameObject:
   - component: {fileID: 4469021005062723525}
   - component: {fileID: 4469021005062723578}
   - component: {fileID: 4469021005062723526}
+  - component: {fileID: 6439803826193795770}
   m_Layer: 0
   m_Name: ForestEnemy
   m_TagString: Enemy
@@ -1841,6 +1842,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1650052819572381769}
+--- !u!54 &6439803826193795770
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558792119978958454}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &5656008878062681839
 GameObject:
   m_ObjectHideFlags: 0

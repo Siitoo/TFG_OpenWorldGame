@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class WorldManager : MonoBehaviour
 {
-
     public WorldEvent[] events;
-
+    
     private bool newDay = false;
     private float totalDay = 0;
 
     public GameObject eventPanel = null;
+    public GameObject[] results;
 
     private void Update()
     {
@@ -33,7 +33,9 @@ public class WorldManager : MonoBehaviour
     {
         WorldEvent worldEvent = null;
 
-        for(int i = 0; i < events.Length; ++i)
+        int selected = 0;
+
+        for(int i = 0, k = 0; i < events.Length; ++i, ++k)
         {
             WorldEvent actualEvent = events[i];
 
@@ -61,21 +63,27 @@ public class WorldManager : MonoBehaviour
                         if(actualEvent.priority < worldEvent.priority)
                         {
                             worldEvent = actualEvent;
+
+                            selected = k;
                         }
                     }
                     else
                     {
+                        selected = k;
                         worldEvent = actualEvent;
                     }
                 }
             }
 
-
+           
         }
 
         if(worldEvent != null)
         {
             SetEventText(worldEvent.result);
+
+            if(results[selected] != null)
+                Instantiate(results[selected]);
         }
 
     }

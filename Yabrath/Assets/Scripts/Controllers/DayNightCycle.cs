@@ -26,7 +26,7 @@ public class DayNightCycle : MonoBehaviour
     public float sky_speed = 1.0f;
 
     private bool last_frame_day = true;
-    private bool actual_frame_day = false;
+    public bool actual_frame_day = false;
 
     // Start is called before the first frame update
     void Start()

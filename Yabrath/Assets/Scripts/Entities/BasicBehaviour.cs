@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 // This class manages which player behaviour is active or overriding, and call its local functions.
 // Contains basic setup and common functions used by all the player behaviours.
@@ -86,6 +87,7 @@ public class BasicBehaviour : MonoBehaviour
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
             {
                 anim.SetBool(death_anim, false);
+                SceneManager.LoadScene(0);
                 return;
             }
 

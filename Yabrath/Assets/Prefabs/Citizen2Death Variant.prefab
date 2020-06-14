@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4363983437237089468
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 212.33775
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 70.206924
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 555.0867
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070068971458973001, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089756436763787098, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_Name
+      value: Citizen2Death Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955690074762417704, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720604875033681764, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467424210019118987, guid: b6dcd6e54200dd9408fd8845fefe3fed,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 086c830b01819f04bb5ea46dd165f422, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b6dcd6e54200dd9408fd8845fefe3fed, type: 3}
