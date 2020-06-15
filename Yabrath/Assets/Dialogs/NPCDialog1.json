@@ -72,16 +72,16 @@
     },
     {
       "id": 10,
-      "text": "You want to go to the forest anyway? ",
+      "text": "Thanks, we have clues that there are already infiltrators in the city we take care of them so they do not warn a larger group and you take care of the group approaching the city. But do you want to go to the forest anyway? ",
       "type": "NPCQuestionAnswered",
-      "answers": [ 12,13 ],
+      "answers": [ 12, 13 ],
       "questID": 0
     },
     {
       "id": 11,
-      "text": "You want to go to investigate the rumor anyway? ",
+      "text": "We'll take care of the enemies farthest from the city. You take care of the small group that's nearby.And You want to go to investigate the rumor anyway? ",
       "type": "NPCQuestionAnswered",
-      "answers": [ 14,15 ],
+      "answers": [ 14, 15 ],
       "questID": 0
     },
     {
