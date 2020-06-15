@@ -370,7 +370,7 @@ public class MoveBehaviour : GenericBehaviour
             {
                 behaviourManager.GetRigidBody.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
 
-                if(!step_audio.isPlaying && !behaviourManager.IsSprinting())
+                if(!step_audio.isPlaying )
                     step_audio.Play();
             }
             else

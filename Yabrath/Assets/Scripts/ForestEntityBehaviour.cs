@@ -100,6 +100,7 @@ public class ForestEntityBehaviour : MonoBehaviour
         {
             if(col.tag == "Player")
             {
+                hand.gameObject.GetComponent<AudioSource>().Play();
                 col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
                 return;
             }

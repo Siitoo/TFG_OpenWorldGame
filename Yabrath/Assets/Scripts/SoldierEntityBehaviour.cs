@@ -111,6 +111,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
         {
             if (col.tag == "Player")
             {
+                gameObject.GetComponent<AudioSource>().Play();
                 col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
                 return;
             }
@@ -128,6 +129,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
         {
             if (col.tag == "Player")
             {
+                gameObject.GetComponent<AudioSource>().Play();
                 col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
                 return;
             }
