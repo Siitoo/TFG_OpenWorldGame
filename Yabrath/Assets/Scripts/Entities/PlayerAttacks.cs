@@ -73,12 +73,22 @@ public class PlayerAttacks : MonoBehaviour
     {
         GameObject[] enemies = EnemiesHitted(true, false);
 
+        if(enemies.Length > 0)
+        {
+            right_kick.gameObject.GetComponent<AudioSource>().Play();
+        }
+
         DoDmg(enemies,kick1_dmg);
     }
 
     public void AttackKick2()
     {
         GameObject[] enemies = EnemiesHitted(true, false);
+
+        if (enemies.Length > 0)
+        {
+            left_kick.gameObject.GetComponent<AudioSource>().Play();
+        }
 
         DoDmg(enemies, kick2_dmg);
     }
@@ -87,6 +97,11 @@ public class PlayerAttacks : MonoBehaviour
     {
         GameObject[] enemies = EnemiesHitted(true,false);
 
+        if (enemies.Length > 0)
+        {
+            right_kick.gameObject.GetComponent<AudioSource>().Play();
+        }
+
         DoDmg(enemies, kick3_dmg);
     }
 
@@ -94,12 +109,22 @@ public class PlayerAttacks : MonoBehaviour
     {
         GameObject[] enemies = EnemiesHitted(false);
 
+        if (enemies.Length > 1)
+        {
+            left_punch.gameObject.GetComponent<AudioSource>().Play();
+        }
+
         DoDmg(enemies,punch1_dmg);
     }
 
     public void AttackPunch2()
     {
         GameObject[] enemies = EnemiesHitted(false,true);
+
+        if (enemies.Length > 1)
+        {
+            right_punch.gameObject.GetComponent<AudioSource>().Play();
+        }
 
         DoDmg(enemies, punch2_dmg);
     }
@@ -112,6 +137,14 @@ public class PlayerAttacks : MonoBehaviour
             left = true;
 
         GameObject[] enemies = EnemiesHitted(false, left);
+
+        if (enemies.Length > 1)
+        {
+            if(hit == 0)
+                left_punch.gameObject.GetComponent<AudioSource>().Play();
+            else
+                right_punch.gameObject.GetComponent<AudioSource>().Play();
+        }
 
         DoDmg(enemies, punch3_dmg);
     }
