@@ -100,7 +100,8 @@ public class ForestEntityBehaviour : MonoBehaviour
     public void Attack(float dmg)
     {
         Collider[] colliders;
-        colliders = Physics.OverlapBox(hand.position, Vector3.up , hand.rotation);
+        Vector3 m = new Vector3(0.5f, 1, 0.5f);
+        colliders = Physics.OverlapBox(hand.position, m , hand.rotation);
 
         foreach (Collider col in colliders)
         {

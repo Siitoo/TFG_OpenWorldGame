@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class EntityDialog : MonoBehaviour
 {
-    public TextAsset text;
+    public string text;
 
     [System.Serializable]
     public class Dialog
@@ -30,7 +30,7 @@ public class EntityDialog : MonoBehaviour
 
     void Awake()
     {
-        string path = Application.dataPath + "/Dialogs/" + text.name + ".json";
+        string path = Application.streamingAssetsPath + "/Dialogs/" + text + ".json";
         string json_string = File.ReadAllText(path);
         dialogs = JsonUtility.FromJson<Dialogs>(json_string);
         canvas = GameObject.FindGameObjectWithTag("Canvas");

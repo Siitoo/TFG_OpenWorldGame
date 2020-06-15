@@ -47,7 +47,7 @@ public class QuestManager : MonoBehaviour
     public Quests quests;
     public List<Quest> active_quests;
 
-    public TextAsset text;
+    public string text;
 
     public Image mission_panel = null;
     public GameObject text_base = null;
@@ -59,7 +59,7 @@ public class QuestManager : MonoBehaviour
 
     void Awake()
     {
-        string path = Application.dataPath + "/Quests/" + text.name + ".json";
+        string path = Application.streamingAssetsPath + "/Quests/" + text + ".json";
         string json_string = File.ReadAllText(path);
         quests = JsonUtility.FromJson<Quests>(json_string);
         questIcons = new List<GameObject>();
