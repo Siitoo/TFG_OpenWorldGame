@@ -31,7 +31,13 @@ public class ForestEntityBehaviour : MonoBehaviour
         if (seePlayer && !die)
         {
             if (!attack)
+            {
                 Movement();
+                if(!gameObject.GetComponent<AudioSource>().isPlaying)
+                    gameObject.GetComponent<AudioSource>().Play();
+            }
+            else
+                gameObject.GetComponent<AudioSource>().Stop();
 
             if (Mathf.Abs(Vector3.SqrMagnitude(transform.position - player_transform.position)) <= 1.0f)
             {

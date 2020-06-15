@@ -33,7 +33,13 @@ public class SoldierEntityBehaviour : MonoBehaviour
             if (seePlayer && !die)
             {
                 if (!attack)
+                {
                     Movement();
+                    if (!gameObject.GetComponent<AudioSource>().isPlaying)
+                        gameObject.GetComponent<AudioSource>().Play();
+                }
+                else
+                    gameObject.GetComponent<AudioSource>().Stop();
 
                 if (Mathf.Abs(Vector3.SqrMagnitude(transform.position - player_transform.position)) <= 1.0f)
                 {
@@ -111,7 +117,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
         {
             if (col.tag == "Player")
             {
-                gameObject.GetComponent<AudioSource>().Play();
+                Kick_left.gameObject.GetComponent<AudioSource>().Play();
                 col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
                 return;
             }
@@ -129,7 +135,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
         {
             if (col.tag == "Player")
             {
-                gameObject.GetComponent<AudioSource>().Play();
+                Kick_right.gameObject.GetComponent<AudioSource>().Play();
                 col.gameObject.GetComponent<PlayerAttacks>().GetDamage(dmg);
                 return;
             }
