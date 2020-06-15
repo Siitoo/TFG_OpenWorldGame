@@ -33,6 +33,11 @@ public class MoveBehaviour : GenericBehaviour
     private string[] weakAttackParameters;
     private int combo_index = 0;
     private float tumbleSpeed = 0.0f;
+    private AudioSource step_audio = null;
+
+    public float walk_pitch = 1.6f;
+    public float run_pitch = 2.5f;
+
 	// Start is always called after any Awake functions.
 	void Start()
 	{
@@ -52,7 +57,8 @@ public class MoveBehaviour : GenericBehaviour
         //Sito Test attacks
         strongAttackParameters = new string[] { "Kick1", "Kick2", "Kick3", "AttackReset" };
         weakAttackParameters = new string[] { "Punch1", "Punch2", "Punch3", "AttackReset" };
-
+        step_audio = gameObject.GetComponent<AudioSource>();
+        
     }
 
 	// Update is used to set features regardless the active behaviour.
@@ -348,16 +354,29 @@ public class MoveBehaviour : GenericBehaviour
             //speedSeeker += Input.GetAxis("Mouse ScrollWheel"); //SITO
             speedSeeker = Mathf.Clamp(speedSeeker, walkSpeed, runSpeed);
             speed *= speedSeeker;
+
             if (behaviourManager.IsSprinting())
             {
                 speed = sprintSpeed;
+                step_audio.pitch = run_pitch;
             }
+            else
+                step_audio.pitch = walk_pitch;
 
             behaviourManager.GetAnim.SetFloat(speedFloat, speed, speedDampTime, Time.deltaTime);
 
             // behaviourManager.GetRigidBody.AddForce(transform.forward*speed *10.0f,ForceMode.Impulse);
             if (speed > 0.01f && behaviourManager.IsGrounded())
+            {
                 behaviourManager.GetRigidBody.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
+
+                if(!step_audio.isPlaying && !behaviourManager.IsSprinting())
+                    step_audio.Play();
+            }
+            else
+            {
+                step_audio.Stop();
+            }
         }
         else
         {
