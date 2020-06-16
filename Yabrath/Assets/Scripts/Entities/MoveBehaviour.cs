@@ -64,6 +64,7 @@ public class MoveBehaviour : GenericBehaviour
 	// Update is used to set features regardless the active behaviour.
 	void Update()
 	{
+    
 		// Get jump input.
 		if (!jump && behaviourManager.inputController.JumpButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
 		{

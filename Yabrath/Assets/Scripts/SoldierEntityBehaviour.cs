@@ -28,6 +28,9 @@ public class SoldierEntityBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.tag == "Untagged")
+            gameObject.tag = "Enemy";
+
         if (gameObject.tag == "Enemy")
         {
             if (seePlayer && !die)
