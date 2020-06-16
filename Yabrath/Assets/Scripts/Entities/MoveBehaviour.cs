@@ -82,13 +82,15 @@ public class MoveBehaviour : GenericBehaviour
         if (behaviourManager.inputController.StrongButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
         {
             if(!weakAttack && !behaviourManager.death)
-                strongAttack = true;
+                if (!isPunchAttack())
+                    strongAttack = true;
         }
 
         if (behaviourManager.inputController.WeakAttackButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
         {
             if(!strongAttack && !behaviourManager.death)
-                weakAttack = true;
+                if(!isKickAttack())
+                    weakAttack = true;
         }
 
         if (behaviourManager.inputController.TumbleButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
@@ -146,6 +148,18 @@ public class MoveBehaviour : GenericBehaviour
                 KickAttack();
         }
 
+    }
+
+    private bool isPunchAttack()
+    {
+        return behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Punch1") || behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Punch2")
+            || behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Punch3");
+    }
+
+    private bool isKickAttack()
+    {
+        return behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Kick1") || behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Kick2")
+            || behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Kick3");
     }
 
     public void PunchAttack()
@@ -220,7 +234,10 @@ public class MoveBehaviour : GenericBehaviour
             behaviourManager.UnlockTempBehaviour(this.behaviourCode);
 
             strongAttack = false;
+
         }
+
+        
     }
 
     public void KickAttack()
@@ -297,6 +314,8 @@ public class MoveBehaviour : GenericBehaviour
             weakAttack = false;
 
         }
+
+        
 
     }
 
