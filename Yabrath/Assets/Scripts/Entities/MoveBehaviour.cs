@@ -153,7 +153,7 @@ public class MoveBehaviour : GenericBehaviour
         if (weakAttack && behaviourManager.IsGrounded() && !start_attack_weak)
         {
             behaviourManager.LockTempBehaviour(this.behaviourCode);
-            behaviourManager.GetAnim.SetTrigger(weakAttackParameters[combo_index]);
+            behaviourManager.GetAnim.SetTrigger(weakAttackParameters[0]);
             start_attack_weak = true;
             weakAttack = false;
         }
@@ -163,6 +163,7 @@ public class MoveBehaviour : GenericBehaviour
 
             if (weakAttack && (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime <= 0.9f && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.3f))
             {
+                behaviourManager.GetAnim.ResetTrigger(weakAttackParameters[0]);
                 behaviourManager.GetAnim.SetTrigger(weakAttackParameters[1]);
                 combo_index = 2;
             }
@@ -173,12 +174,17 @@ public class MoveBehaviour : GenericBehaviour
 
             weakAttack = false;
         }
+        else if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Punch1") && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
+        {
+            combo_index = weakAttackParameters.Length;
+        }
 
         if (start_attack_weak && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Punch2"))
         {
 
             if (weakAttack && (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime <= 0.9f || behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.3f))
             {
+                behaviourManager.GetAnim.ResetTrigger(weakAttackParameters[1]);
                 behaviourManager.GetAnim.SetTrigger(weakAttackParameters[2]);
                 combo_index = 3;
             }
@@ -189,17 +195,22 @@ public class MoveBehaviour : GenericBehaviour
 
             weakAttack = false;
         }
+        else if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Punch2") && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
+        {
+            combo_index = weakAttackParameters.Length;
+        }
 
         if (start_attack_weak && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Punch3"))
         {
 
             if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
             {
-                combo_index++;
+                behaviourManager.GetAnim.ResetTrigger(weakAttackParameters[2]);
+                combo_index = 4;
             }
         }
 
-        if (start_attack_weak && combo_index == strongAttackParameters.Length && !behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("NoneAttack"))
+        if ( combo_index == strongAttackParameters.Length && !behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("NoneAttack"))
         {
             combo_index = weakAttackParameters.Length - 1;
             behaviourManager.GetAnim.SetTrigger(weakAttackParameters[combo_index]);
@@ -217,7 +228,7 @@ public class MoveBehaviour : GenericBehaviour
         if (strongAttack && behaviourManager.IsGrounded() && !start_attack_strong)
         {
             behaviourManager.LockTempBehaviour(this.behaviourCode);
-            behaviourManager.GetAnim.SetTrigger(strongAttackParameters[combo_index]);
+            behaviourManager.GetAnim.SetTrigger(strongAttackParameters[0]);
             start_attack_strong = true;
             strongAttack = false;
         }
@@ -227,6 +238,7 @@ public class MoveBehaviour : GenericBehaviour
 
             if (strongAttack && (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime <= 0.9f && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.3f))
             {
+                behaviourManager.GetAnim.ResetTrigger(strongAttackParameters[0]);
                 behaviourManager.GetAnim.SetTrigger(strongAttackParameters[1]);
                 combo_index = 2;
             }
@@ -237,12 +249,17 @@ public class MoveBehaviour : GenericBehaviour
 
             strongAttack = false;
         }
+        else if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Kick1") && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
+        {
+            combo_index = weakAttackParameters.Length;
+        }
 
         if (start_attack_strong && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Kick2"))
         {
 
             if (strongAttack && (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime <= 0.9f || behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.3f))
             {
+                behaviourManager.GetAnim.ResetTrigger(strongAttackParameters[1]);
                 behaviourManager.GetAnim.SetTrigger(strongAttackParameters[2]);
                 combo_index = 3;
             }
@@ -253,17 +270,22 @@ public class MoveBehaviour : GenericBehaviour
 
             strongAttack = false;
         }
+        else if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Kick2") && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
+        {
+            combo_index = weakAttackParameters.Length;
+        }
 
         if (start_attack_strong && behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("Kick3"))
         {
 
             if (behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f)
             {
-                combo_index++;
+                behaviourManager.GetAnim.ResetTrigger(strongAttackParameters[2]);
+                combo_index =4;
             }
         }
 
-        if (start_attack_strong && combo_index == strongAttackParameters.Length && !behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("NoneAttack"))
+        if (combo_index == strongAttackParameters.Length && !behaviourManager.GetAnim.GetCurrentAnimatorStateInfo(1).IsName("NoneAttack"))
         {
             combo_index = strongAttackParameters.Length - 1;
             behaviourManager.GetAnim.SetTrigger(strongAttackParameters[combo_index]);
@@ -275,6 +297,7 @@ public class MoveBehaviour : GenericBehaviour
             weakAttack = false;
 
         }
+
     }
 
 	// Execute the idle and walk/run jump movements.
