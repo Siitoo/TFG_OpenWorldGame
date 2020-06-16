@@ -37,7 +37,7 @@ public class MoveBehaviour : GenericBehaviour
 
     public float walk_pitch = 1.6f;
     public float run_pitch = 2.5f;
-
+   // public Text text = null;
 	// Start is always called after any Awake functions.
 	void Start()
 	{
@@ -64,7 +64,7 @@ public class MoveBehaviour : GenericBehaviour
 	// Update is used to set features regardless the active behaviour.
 	void Update()
 	{
-    
+       // text.text = QualitySettings.vSyncCount.ToString();
 		// Get jump input.
 		if (!jump && behaviourManager.inputController.JumpButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
 		{
