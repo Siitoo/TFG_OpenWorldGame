@@ -41,7 +41,6 @@ public class DayNightCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         float range = 1 - min_intesity_point;
         float dot = Mathf.Clamp01((Vector3.Dot(main_light.transform.forward, Vector3.down)-min_intesity_point) / range);
         float new_intensity = ((max_intensity - min_intensity) * dot) + min_intensity;

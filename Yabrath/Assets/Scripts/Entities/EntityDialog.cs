@@ -30,6 +30,8 @@ public class EntityDialog : MonoBehaviour
 
     void Awake()
     {
+        Cursor.visible = false;
+
         string path = Application.streamingAssetsPath + "/Dialogs/" + text + ".json";
         string json_string = File.ReadAllText(path);
         dialogs = JsonUtility.FromJson<Dialogs>(json_string);
@@ -91,6 +93,8 @@ public class EntityDialog : MonoBehaviour
 
             if (dialogs.dialogs[actual_dialog].answers[0] != -1)
             {
+                Cursor.visible = true;
+
                 answers_ui.SetActive(true);
 
                 for (int i = 0; i < dialogs.dialogs[actual_dialog].answers.Length; ++i)
@@ -102,7 +106,6 @@ public class EntityDialog : MonoBehaviour
                 }
             }
         }
-
     }
 
 
@@ -131,6 +134,10 @@ public class EntityDialog : MonoBehaviour
 
     public void OnClickButtonDialog(int id_button)
     {
+
+        if (Cursor.visible)
+            Cursor.visible = false;
+
         if (dialogs.dialogs[dialogs.dialogs[actual_dialog].answers[id_button]].questID != 0)
         {
             GameObject go = GameObject.FindGameObjectWithTag("Manager");
