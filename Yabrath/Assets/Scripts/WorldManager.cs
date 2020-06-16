@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WorldManager : MonoBehaviour
 {
@@ -80,6 +81,7 @@ public class WorldManager : MonoBehaviour
 
         if(worldEvent != null)
         {
+            Cursor.visible = true;
             SetEventText(worldEvent.result);
 
             if(results[selected] != null)
@@ -92,6 +94,11 @@ public class WorldManager : MonoBehaviour
     {
         eventPanel.SetActive(true);
         eventPanel.transform.GetChild(0).gameObject.GetComponent<Text>().text = description;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
