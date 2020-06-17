@@ -15,5 +15,6 @@ MonoBehaviour:
   dayStart: 1
   QuestNeeded: 03000000
   priority: 1
-  result: You have eliminated the enemies of the forest, but the rumors were true
-    and a large army of bandits sacked the city.
+  result: You have eliminated the vanguard of bandits and managed to stop the imminent
+    invasion, but the beings of the forest have seized the opportunity and are destroying
+    the city.

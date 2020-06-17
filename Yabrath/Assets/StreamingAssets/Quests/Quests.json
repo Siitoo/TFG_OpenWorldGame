@@ -38,8 +38,8 @@
     },
     {
       "questId": 5,
-      "name": "Talk to the general's assistant",
-      "description": "Go to the city and inform",
+      "name": "Explore!!",
+      "description": "Explore the world or go home to change the day",
       "current": 0,
       "total": 1,
       "completed": false,
@@ -47,8 +47,8 @@
     },
     {
       "questId": 6,
-      "name": "Talk to the assistant",
-      "description": "Go to the city and inform",
+      "name": "Explore!!",
+      "description": "Explore the world or go home to change the day",
       "current": 0,
       "total": 1,
       "completed": false,

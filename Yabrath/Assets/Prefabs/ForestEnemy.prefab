@@ -1842,7 +1842,7 @@ GameObject:
   - component: {fileID: 4469021005062723526}
   - component: {fileID: 6439803826193795770}
   - component: {fileID: 3452655200607347274}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ForestEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

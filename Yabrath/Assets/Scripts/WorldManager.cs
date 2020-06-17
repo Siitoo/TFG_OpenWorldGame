@@ -14,6 +14,7 @@ public class WorldManager : MonoBehaviour
     public GameObject eventPanel = null;
     public GameObject[] results;
 
+    WorldEvent worldEvent = null;
     private void Update()
     {
         if(newDay)
@@ -29,11 +30,9 @@ public class WorldManager : MonoBehaviour
         newDay = true;
     }
 
-
     private void CheckEvents()
     {
-        WorldEvent worldEvent = null;
-
+      
         int selected = 0;
 
         for(int i = 0, k = 0; i < events.Length; ++i, ++k)

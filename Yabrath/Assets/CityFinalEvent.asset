@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CityFinalEvent
   m_EditorClassIdentifier: 
   dayStart: 1
-  QuestNeeded: 0500000006000000
+  QuestNeeded: 0200000003000000
   priority: 0
   result: 'By your actions you have protected the city '

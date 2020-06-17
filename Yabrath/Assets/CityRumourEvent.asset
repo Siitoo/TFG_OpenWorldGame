@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: CityRumourEvent
   m_EditorClassIdentifier: 
   dayStart: 1
-  QuestNeeded: 04000000
+  QuestNeeded: 02000000
   priority: 1
-  result: You have eliminated the vanguard of bandits and managed to stop the imminent
-    invasion, but the beings of the forest have seized the opportunity and are destroying
-    the city.
+  result: You have eliminated the enemies of the forest, but the rumors were true
+    and a large army of bandits sacked the city.
