@@ -82,14 +82,14 @@ public class MoveBehaviour : GenericBehaviour
         if (behaviourManager.inputController.StrongButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
         {
             if(!weakAttack && !behaviourManager.death)
-                if (!isPunchAttack())
+                if (isKickAttack() || combo_index==0 )
                     strongAttack = true;
         }
 
         if (behaviourManager.inputController.WeakAttackButton && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !jump)
         {
             if(!strongAttack && !behaviourManager.death)
-                if(!isKickAttack())
+                if(isPunchAttack() || combo_index == 0)
                     weakAttack = true;
         }
 
@@ -127,7 +127,7 @@ public class MoveBehaviour : GenericBehaviour
                 behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog(0);
             else
             {
-                    behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog();
+                behaviourManager.npc_selected.GetComponent<EntityDialog>().NextDialog();
             }
 
             behaviourManager.do_dialog = false;
@@ -164,8 +164,15 @@ public class MoveBehaviour : GenericBehaviour
 
     public void PunchAttack()
     {
+        if(start_attack_weak && isKickAttack())
+        {
+            start_attack_weak = false;
+            start_attack_strong = true;
+        }
+
         if (weakAttack && behaviourManager.IsGrounded() && !start_attack_weak)
         {
+            combo_index = 1;
             behaviourManager.LockTempBehaviour(this.behaviourCode);
             behaviourManager.GetAnim.SetTrigger(weakAttackParameters[0]);
             start_attack_weak = true;
@@ -242,8 +249,16 @@ public class MoveBehaviour : GenericBehaviour
 
     public void KickAttack()
     {
+
+        if (start_attack_strong && isPunchAttack())
+        {
+            start_attack_weak = true;
+            start_attack_strong = false;
+        }
+
         if (strongAttack && behaviourManager.IsGrounded() && !start_attack_strong)
         {
+            combo_index = 1;
             behaviourManager.LockTempBehaviour(this.behaviourCode);
             behaviourManager.GetAnim.SetTrigger(strongAttackParameters[0]);
             start_attack_strong = true;
@@ -314,8 +329,6 @@ public class MoveBehaviour : GenericBehaviour
             weakAttack = false;
 
         }
-
-        
 
     }
 
