@@ -6,8 +6,15 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
+
     public void OnPlay()
     {
+        Cursor.visible = false;
         SceneManager.LoadScene(1); 
     }
 
