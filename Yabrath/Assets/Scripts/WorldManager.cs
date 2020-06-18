@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class WorldManager : MonoBehaviour
 {
     public WorldEvent[] events;
-    
-    private bool newDay = false;
+
+    public bool despawnCitizens = false;
+    public bool newDay = false;
     private float totalDay = 0;
 
     public GameObject eventPanel = null;
@@ -28,6 +29,7 @@ public class WorldManager : MonoBehaviour
     {
         totalDay++;
         newDay = true;
+        despawnCitizens = true;
     }
 
     private void CheckEvents()

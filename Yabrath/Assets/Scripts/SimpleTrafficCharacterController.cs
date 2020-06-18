@@ -11,14 +11,14 @@ public class SimpleTrafficCharacterController : MonoBehaviour
     public bool reachedDestination = false;
 
     private GameObject sun = null;
-
+    WorldManager manager = null;
     // Start is called before the first frame update
     void Start()
     {
         movementSpeed = Random.Range(1.5f, 3.5f);
 
         sun = GameObject.FindGameObjectWithTag("Sun");
-
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<WorldManager>();
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class SimpleTrafficCharacterController : MonoBehaviour
             }
         }
 
-        if(!sun.GetComponent<DayNightCycle>().actual_frame_day)
+        if(!sun.GetComponent<DayNightCycle>().actual_frame_day || manager.despawnCitizens)
         {
             Destroy(this.gameObject);
         }
