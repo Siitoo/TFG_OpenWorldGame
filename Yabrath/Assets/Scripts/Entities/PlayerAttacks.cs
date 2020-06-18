@@ -155,13 +155,14 @@ public class PlayerAttacks : MonoBehaviour
 
         if (kick)
         {
+            Vector3 m = new Vector3(0.5f, 1f, 0.5f);
             if(left)
             {
-                colliders = Physics.OverlapBox(left_kick.position, Vector3.up / 1.78f, left_kick.rotation);
+                colliders = Physics.OverlapBox(left_kick.position, m, left_kick.rotation);
             }
             else
             {
-                colliders = Physics.OverlapBox(right_kick.position, Vector3.up / 1.78f, right_kick.rotation);
+                colliders = Physics.OverlapBox(right_kick.position, m, right_kick.rotation);
             }
         }
         else
@@ -182,7 +183,10 @@ public class PlayerAttacks : MonoBehaviour
         foreach (Collider col in colliders)
         {
             if (col.tag == "Enemy")
+            {
                 hits.SetValue(col.gameObject, index);
+                index += 1;
+            }
         }
         
 
@@ -191,11 +195,27 @@ public class PlayerAttacks : MonoBehaviour
 
     private void DoDmg(GameObject[] enemies, int dmg)
     {
+
+        GameObject go = null;
+        float min_distance = 9999;
         foreach (GameObject enemy in enemies)
         {
             if(enemy != null)
-               enemy.GetComponent<EntityLife>().ReceiveDmg(dmg);
+            {
+                Vector3 d = enemy.transform.position - transform.position;
+
+                if(d.magnitude < min_distance)
+                {
+                    min_distance = d.magnitude;
+                    go = enemy;
+                }
+
+            }
+              
         }
+
+        if(go != null)
+            go.GetComponent<EntityLife>().ReceiveDmg(dmg);
     }
 
 }
