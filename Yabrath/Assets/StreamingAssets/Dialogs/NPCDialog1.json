@@ -38,8 +38,8 @@
     {
       "id": 5,
       "text": "Don't worry and rest assured that tomorrow will be a hard day",
-      "type": "NPCFinal",
-      "answers": [ -1 ],
+      "type": "NPCTalk",
+      "answers": [ -3 ],
       "questID": 0
     },
     {
@@ -123,15 +123,15 @@
     {
       "id": 17,
       "text": "Thanks a lot",
-      "type": "NPCFinal",
-      "answers": [ -1 ],
+      "type": "NPCTalk",
+      "answers": [ -3 ],
       "questID": 0
     },
     {
       "id": 18,
       "text": "Thanks a lot",
-      "type": "NPCFinal",
-      "answers": [ -1 ],
+      "type": "NPCTalk",
+      "answers": [ -3 ],
       "questID": 0
     }
 

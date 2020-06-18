@@ -13,6 +13,7 @@ public class ForestEntityBehaviour : MonoBehaviour
     Transform player_transform;
 
     public Transform hand = null;
+    public bool needCount = true;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +57,8 @@ public class ForestEntityBehaviour : MonoBehaviour
             if (!die)
             {
                 anim.SetBool("Die", true);
-                GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(3, 1);
+                if(needCount)
+                    GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(3, 1);
                 StartCoroutine("DieTime");
             }
 

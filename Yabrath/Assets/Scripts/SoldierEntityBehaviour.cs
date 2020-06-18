@@ -14,6 +14,7 @@ public class SoldierEntityBehaviour : MonoBehaviour
 
     public Transform Kick_left = null;
     public Transform Kick_right = null;
+    public bool needCount = true;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +62,9 @@ public class SoldierEntityBehaviour : MonoBehaviour
                 if (!die)
                 {
                     anim.SetBool("Die", true);
-                    GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(4, 1);
+                    if(needCount)
+                        GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().AddCurrent(4, 1);
+
                     StartCoroutine("DieTime");
                 }
 

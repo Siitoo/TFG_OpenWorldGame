@@ -77,6 +77,14 @@ public class EntityDialog : MonoBehaviour
                     FinishDialog();
                     return;
                 }
+                else if (actual_dialog == -3)
+                {
+                    FinishDialog();
+                    gameObject.tag = "Untagged";
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<BasicBehaviour>().npc_selected = null;
+                    Destroy(this);   
+                    return;
+                }
             }
         }
 
