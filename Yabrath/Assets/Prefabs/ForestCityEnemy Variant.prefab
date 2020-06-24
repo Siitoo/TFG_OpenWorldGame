@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4469021005020045656, guid: a727e910888432b4abdab1678265ae09,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4469021005062723526, guid: a727e910888432b4abdab1678265ae09,
         type: 3}
       propertyPath: needCount
@@ -25,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 5558792119978958454, guid: a727e910888432b4abdab1678265ae09,
         type: 3}
       propertyPath: m_Name
-      value: ForestCityEnemy
+      value: ForestCityEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8898992071285730405, guid: a727e910888432b4abdab1678265ae09,
         type: 3}

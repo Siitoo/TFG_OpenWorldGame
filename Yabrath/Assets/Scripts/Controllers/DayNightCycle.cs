@@ -32,7 +32,7 @@ public class DayNightCycle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        QualitySettings.vSyncCount = 0;
+        QualitySettings.vSyncCount = -1;
         Application.targetFrameRate = 30;
         main_light = GetComponent<Light>();
         skybox_material = RenderSettings.skybox;
