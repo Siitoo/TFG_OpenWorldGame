@@ -68,6 +68,8 @@ public class InputController : MonoBehaviour
         if (Input.GetButton(strongAttackButton) == true) StrongButton = true; else StrongButton = false;
         if (Input.GetButtonDown(jumpButton) == true) JumpButton = true; else JumpButton = false;
         if (Input.GetButton(tumbleButton) == true) TumbleButton = true; else TumbleButton = false;
+        if (Input.GetKeyDown(KeyCode.Escape) == true) Application.Quit();
+
 
     }
 
